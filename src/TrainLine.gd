@@ -28,14 +28,12 @@ func add_junction(pos:Vector2):
 
 	if start_pos.length() == 0: # First position?
 		start_pos = pos
-		#call_deferred("buy_train", start_pos)
-		
-	var x = curve.get_point_count()
+
 	curve.add_point(pos)
 	return junc
 	
 	
-func add_train():#pos:Vector2):
+func add_train():
 	var train = train_class.instance()
 	train.position = start_pos#pos
 	self.add_child(train)

@@ -9,6 +9,8 @@ const MAP_WIDTH = 500
 const MAP_HEIGHT = 500
 const SQ_SIZE = 10
 
+var next_pri : int = 0
+
 var rnd : RandomNumberGenerator
 
 func _ready():
@@ -27,3 +29,7 @@ func gridify_pos(pos : Vector2):
 	y = y * SQ_SIZE
 	return Vector2(x, y)
 	
+
+func get_next_priority():
+	next_pri += 1
+	return next_pri
