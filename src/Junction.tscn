@@ -2,7 +2,7 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
-[node name="Junction" type="Node2D"]
+[node name="Junction" type="Node2D" groups=["junctions"]]
 
 [node name="Area2D" type="Area2D" parent="."]
 

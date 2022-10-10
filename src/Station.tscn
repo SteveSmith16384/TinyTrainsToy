@@ -4,7 +4,7 @@
 
 [sub_resource type="CircleShape2D" id=1]
 
-[node name="Station" type="Node2D"]
+[node name="Station" type="Node2D" groups=["stations"]]
 script = ExtResource( 1 )
 
 [node name="Area" type="Area2D" parent="." groups=["stations"]]
@@ -25,4 +25,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="timeout" from="NewPassengerTimer" to="." method="_on_NewPassengerTimer_timeout"]

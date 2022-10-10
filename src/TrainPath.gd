@@ -1,6 +1,5 @@
 extends Path2D
 
-var station_class = preload("res://Station.tscn")
 var junction_class = preload("res://Junction.tscn")
 var train_class = preload("res://Train.tscn")
 
@@ -16,25 +15,8 @@ func _ready():
 	
 #	$TileMap.set_cell(0, 0, 0)
 
-	for i in 3:
-		add_station()
 	pass
 
-
-func _input(event):
-   # Mouse in viewport coordinates.
-	if event is InputEventMouseButton:
-		var ev: InputEventMouseButton = event
-#		print("Mouse Click/Unclick at: ", event.position)
-		#curve.add_point(event.position)
-		if ev.button_mask == 1 and ev.pressed:
-			add_junction(self.get_local_mouse_position())#event.position)
-		pass
-	elif event is InputEventMouseMotion:
-#		print("Mouse Motion at: ", event.position)
-		pass
-	pass
-	
 
 func add_junction(pos:Vector2):
 	if pos.x < 0:
@@ -46,28 +28,17 @@ func add_junction(pos:Vector2):
 
 	if start_pos.length() == 0: # First position?
 		start_pos = pos
-		call_deferred("buy_train", start_pos)
+		#call_deferred("buy_train", start_pos)
 		
+	var x = curve.get_point_count()
 	curve.add_point(pos)
-	pass
+	return junc
 	
 	
-func buy_train(pos:Vector2):
+func add_train():#pos:Vector2):
 	var train = train_class.instance()
-	train.position = pos
+	train.position = start_pos#pos
 	self.add_child(train)
 	pass
 
 
-func _on_NewStationTimer_timeout():
-	add_station()
-	pass
-
-
-func add_station():
-	var station = station_class.instance()
-	var pos = Vector2(Globals.rnd.randi_range(0, Globals.MAP_WIDTH), Globals.rnd.randi_range(0, Globals.MAP_HEIGHT))
-	station.position = pos
-	add_child(station)
-	pass
-	
