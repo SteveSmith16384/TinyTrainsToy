@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Station.gd" type="Script" id=1]
+[ext_resource path="res://PassengerList.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 17.0
 
 [node name="Station" type="Node2D" groups=["stations"]]
 script = ExtResource( 1 )
+
+[node name="PassengerList" parent="." instance=ExtResource( 2 )]
+position = Vector2( 15, -16 )
 
 [node name="Area" type="Area2D" parent="." groups=["stations"]]
 
@@ -16,14 +21,7 @@ shape = SubResource( 1 )
 wait_time = 10.0
 autostart = true
 
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 31.0
-text = "S
-"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Sprite" type="Sprite" parent="."]
 
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="timeout" from="NewPassengerTimer" to="." method="_on_NewPassengerTimer_timeout"]

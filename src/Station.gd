@@ -1,25 +1,28 @@
 extends Node2D
 
-var num_passengers:int = 0
+var passengers = []
+var colour : int
 
 func _ready():
+	colour = Globals.get_next_station_colour()#.get_random_colour()
+	$Sprite.texture = Globals.get_texture(colour)
 	pass
 
 
 func _on_NewPassengerTimer_timeout():
-	num_passengers += 1
-	update_label()
+	passengers.push_back(Globals.get_random_colour())
+	update_passenger_list()
 	pass
 
 
-func set_num_passengers(i):
-	num_passengers = i
-	update_label()
+func clear_passengers():
+	passengers.clear()
+	update_passenger_list()
 	pass
 	
 
-func update_label():
-	$Label.text = str(num_passengers)
+func update_passenger_list():
+	$PassengerList.update()
 	pass
 
 

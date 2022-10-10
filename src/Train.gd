@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-var num_passangers :int = 0
+var passengers = []
 var num_colliding_trains = 0
 var dir: int = 1
 var priority : int = 0
@@ -24,8 +24,15 @@ func _on_Area2D_area_entered(area):
 	if area.get_parent() == self:
 		return
 	if parent.is_in_group("stations"):
-		num_passangers = parent.num_passengers
-		parent.num_passengers = 0
+		# Alight carried passengers
+		for p in passengers:
+			if p == parent.colour:
+				passengers.erase(p)
+		
+		# Embark new passengers
+		passengers.append_array(parent.passengers)
+		$PassengerList.update()
+		parent.clear_passengers()
 	elif parent.is_in_group("trains"):
 		if parent.get_parent() != self.get_parent(): # Only collide with trains on diff tracks
 			if self.priority < parent.priority:
