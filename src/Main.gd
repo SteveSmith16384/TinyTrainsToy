@@ -1,6 +1,6 @@
 extends Node2D
 
-var train_path_class = preload("res://TrainPath.tscn")
+var train_line_class = preload("res://TrainLine.tscn")
 
 var dragging = false
 var selected_junction = null
@@ -41,10 +41,12 @@ func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 	else:
 		if selected_junction == null:
 			# start new line
-			var train_line = train_path_class.instance()
+			var train_line = train_line_class.instance()
+			train_line.curve = Curve2D.new()
 			selected_junction = train_line.add_junction(map_position)
 			$Map.add_child(train_line)
 		else:
+			# Continue existing line
 			var train_line = selected_junction.get_parent()
 			selected_junction = train_line.add_junction(map_position)
 	pass

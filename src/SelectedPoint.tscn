@@ -1,12 +1,21 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://SelectedPoint.gd" type="Script" id=1]
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+func _on_Area2D_area_entered(area):
+#	var parent = area.get_parent()
+#	if parent.is_in_group(\"junctions\")
+	pass
+	
+	
+"
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.0
 
 [node name="SelectedPoint" type="Node2D"]
-script = ExtResource( 1 )
+script = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
