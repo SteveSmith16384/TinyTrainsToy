@@ -6,7 +6,17 @@ var train_class = preload("res://Train.tscn")
 #onready var main = get_tree().get_root().get_node("Main")
 
 var start_pos:Vector2
+var end_pos:Vector2
 
+func _ready():
+	self.self_modulate = Color.black
+	pass
+
+
+func get_end_pos():
+	return end_pos
+
+	
 func add_junction(pos:Vector2):
 	if pos.x < 0:
 		return
@@ -17,7 +27,8 @@ func add_junction(pos:Vector2):
 
 	if start_pos.length() == 0: # First position?
 		start_pos = pos
-
+	end_pos = pos
+	
 	curve.add_point(pos)
 	return junc
 	

@@ -7,6 +7,6 @@ _data = {
 "points": PoolVector2Array(  )
 }
 
-[node name="TrainPath" type="Path2D"]
+[node name="TrainLine" type="Path2D"]
 curve = SubResource( 1 )
 script = ExtResource( 1 )

@@ -4,7 +4,7 @@ var train_line_class = preload("res://TrainLine.tscn")
 
 var dragging = false
 var selected_junction = null
-
+var mouse_pos
 
 func _input(event):
 	# Mouse in viewport coordinates.
@@ -21,11 +21,28 @@ func _input(event):
 				selected_junction = null
 		pass
 	elif event is InputEventMouseMotion:
+		mouse_pos = event.position
 #		print("Mouse Motion at: ", event.position)
 		pass
 	pass
+
+
+func _process(delta):
+	update()
+	pass
 	
 
+func _draw():
+#	var pos = self.get_local_mouse_position()
+	if mouse_pos != null and selected_junction != null:
+		var train_line = selected_junction.get_parent()
+		var end = train_line.end_pos + $Map.position
+
+		draw_line(end, mouse_pos, Color(255, 0, 0), 1)
+#	draw_line(Vector2(0,0), Vector2(50, 50), Color(255, 0, 0), 1)
+	pass
+	
+	
 func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 	var intersections = get_world_2d().direct_space_state.intersect_point(screen_position, 32, [], 0x7FFFFFFF, true, true )
 

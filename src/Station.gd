@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var main = get_tree().get_root().get_node("Main")
+
 var passengers = []
 var colour : int
 
@@ -30,4 +32,5 @@ func _on_Area_area_entered(area):
 	var parent = area.get_parent()
 	if area.is_in_group("stations"):
 		parent.queue_free()
+	#todo main.call_deferred("add_station")
 	pass
