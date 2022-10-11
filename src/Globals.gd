@@ -9,6 +9,8 @@ const MAP_WIDTH = 800
 const MAP_HEIGHT = 600
 const SQ_SIZE = 10
 const MAX_COLOURS = 3
+const NUM_PASSENGERS_WARNING = 6
+const NUM_PASSENGERS_GAME_OVER = 8
 
 var next_pri : int = 0
 var next_station_colour :int = 0
@@ -47,13 +49,17 @@ func get_texture(col:int):
 	match (col):
 		0: return load("res://Assets/Sprites/green_circle.png")
 		1: return load("res://Assets/Sprites/red_circle.png")
-		2: return load("res://Assets/Sprites/yellow_circle.png")
-		_: return null
+		2: return load("res://AsseGamts/Sprites/yellow_circle.png")
+		_: 
+			print("ERROR " + str(col))
+			return null
 	pass
 
 
 func get_next_station_colour():
 	next_station_colour += 1
+	while (next_station_colour < 0):
+		next_station_colour += 1
 	if next_station_colour >= MAX_COLOURS:
 		next_station_colour = 0
 	return next_station_colour

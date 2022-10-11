@@ -25,6 +25,9 @@ func _on_Area2D_area_entered(area):
 	if area.get_parent() == self:
 		return
 	if parent.is_in_group("stations"):
+		if area.is_in_group("area_clear_check"):
+			return
+			
 		# Alight carried passengers
 		var new_list = []
 		for idx in passengers.size():

@@ -1,13 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Station.gd" type="Script" id=1]
 [ext_resource path="res://PassengerList.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 17.0
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 100.0
 
 [node name="Station" type="Node2D" groups=["stations"]]
 script = ExtResource( 1 )
@@ -21,16 +18,14 @@ position = Vector2( 15, -16 )
 shape = SubResource( 1 )
 
 [node name="NewPassengerTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 20.0
 autostart = true
 
 [node name="Sprite" type="Sprite" parent="."]
 
-[node name="AreaStationCloseCheck" type="Area2D" parent="."]
+[node name="FlashTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaStationCloseCheck"]
-shape = SubResource( 2 )
-
-[connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
 [connection signal="timeout" from="NewPassengerTimer" to="." method="_on_NewPassengerTimer_timeout"]
-[connection signal="area_entered" from="AreaStationCloseCheck" to="." method="_on_AreaStationCloseCheck_area_entered"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]

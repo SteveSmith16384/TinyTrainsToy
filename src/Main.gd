@@ -75,11 +75,10 @@ func _process(_delta):
 	
 
 func _draw():
-#	var pos = self.get_local_mouse_position()
 	if mouse_pos != null and selected_junction != null:
 		var train_line = selected_junction.get_parent()
 		var end = train_line.get_end_pos() + $Map.position
-		draw_line(end, mouse_pos, Color(255, 0, 0), 1)
+		draw_line(end, mouse_pos, Color.gray, 2)
 	pass
 	
 	
@@ -87,4 +86,6 @@ func _on_BuyTrainButton_pressed():
 	if selected_junction != null:
 		var train_line = selected_junction.get_parent()
 		train_line.add_train()
+	else:
+		$HUD.set_status_text("No track selected")
 	pass
