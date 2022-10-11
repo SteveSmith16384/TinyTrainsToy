@@ -7,6 +7,7 @@ var priority : int = 0
 
 func _ready():
 	priority = Globals.get_next_priority()
+	loop = false
 	pass
 
 func _process(delta):

@@ -9,8 +9,14 @@ func _ready():
 	pass
 	
 
+func _process(_delta):
+	if Globals.num_actual_stations < Globals.num_required_stations:
+		add_station()
+	pass
+	
 func _on_NewStationTimer_timeout():
-	add_station()
+	Globals.num_required_stations += 1
+	$NewStationTimer.wait_time = $NewStationTimer.wait_time * 2
 	pass
 
 
@@ -19,5 +25,6 @@ func add_station():
 	var pos = Vector2(Globals.rnd.randi_range(0, Globals.MAP_WIDTH), Globals.rnd.randi_range(0, Globals.MAP_HEIGHT))
 	station.position = pos
 	add_child(station)
+	Globals.num_actual_stations += 1
 	pass
 	

@@ -5,57 +5,57 @@ var train_line_class = preload("res://TrainLine.tscn")
 var dragging = false
 var selected_junction = null
 var mouse_pos
+var prev_button_mask: int = 0
 
 func _input(event):
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
+		dragging = false
 		var ev: InputEventMouseButton = event
 		if ev.pressed:
 			if ev.button_mask == 1:
+				#var adj_pos = $Map.get_local_mouse_position()
+				var sel = get_selection_at(ev.position)
+				if sel != null:
+					selected_junction = sel
+					dragging = true
+			else:
+				selected_junction = null
+			pass
+			prev_button_mask = ev.button_mask
+		else: # Released
+			if prev_button_mask == 1:
 				if ev.position.x > $Map.position.x:
 					var adj_pos = $Map.get_local_mouse_position()
 					check_intersection(ev.position, adj_pos)
-					#add_junction(self.get_local_mouse_position())#event.position)
 					pass
 			else:
 				selected_junction = null
 		pass
 	elif event is InputEventMouseMotion:
+		#print("Mouse Motion at: ", event.position)
 		mouse_pos = event.position
-#		print("Mouse Motion at: ", event.position)
+		if selected_junction != null and dragging:
+			selected_junction.position = $Map.get_local_mouse_position()
+			selected_junction.set_curve_point()
 		pass
 	pass
 
 
-func _process(delta):
-	update()
-	pass
-	
-
-func _draw():
-#	var pos = self.get_local_mouse_position()
-	if mouse_pos != null and selected_junction != null:
-		var train_line = selected_junction.get_parent()
-		var end = train_line.end_pos + $Map.position
-
-		draw_line(end, mouse_pos, Color(255, 0, 0), 1)
-#	draw_line(Vector2(0,0), Vector2(50, 50), Color(255, 0, 0), 1)
-	pass
-	
-	
-func check_intersection(screen_position : Vector2, map_position: Vector2 ):
+func get_selection_at(screen_position:Vector2):
 	var intersections = get_world_2d().direct_space_state.intersect_point(screen_position, 32, [], 0x7FFFFFFF, true, true )
-
 	if intersections.size() > 0:
-#		for i in intersections:
-		#print( "Intersection: " + intersections[i] )
-		var i = 0
-		var area = intersections[i].collider
-		var parent = area.get_parent()
-		if parent.is_in_group("junctions"):
-			selected_junction = parent
-		pass
-	else:
+		for intersection in intersections:
+			var area = intersection.collider
+			var parent = area.get_parent()
+			if parent.is_in_group("junctions"):
+				return parent
+	pass
+	
+		
+func check_intersection(screen_position : Vector2, map_position: Vector2 ):
+	var sel = get_selection_at(screen_position)
+	if sel == null:
 		if selected_junction == null:
 			# start new line
 			var train_line = train_line_class.instance()
@@ -66,6 +66,20 @@ func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 			# Continue existing line
 			var train_line = selected_junction.get_parent()
 			selected_junction = train_line.add_junction(map_position)
+	pass
+	
+	
+func _process(_delta):
+	update()
+	pass
+	
+
+func _draw():
+#	var pos = self.get_local_mouse_position()
+	if mouse_pos != null and selected_junction != null:
+		var train_line = selected_junction.get_parent()
+		var end = train_line.get_end_pos() + $Map.position
+		draw_line(end, mouse_pos, Color(255, 0, 0), 1)
 	pass
 	
 	

@@ -12,7 +12,10 @@ func _ready():
 
 
 func _on_NewPassengerTimer_timeout():
-	passengers.push_back(Globals.get_random_colour())
+	var col = Globals.get_random_colour()
+	while (col == colour): # Make sure passenger is diff colour
+		col = Globals.get_random_colour()
+	passengers.push_back(col)
 	update_passenger_list()
 	pass
 
@@ -28,9 +31,17 @@ func update_passenger_list():
 	pass
 
 
-func _on_Area_area_entered(area):
+func _on_Area_area_entered(_area):
+	#var parent = area.get_parent()
+	pass
+
+
+func _on_AreaStationCloseCheck_area_entered(area):
 	var parent = area.get_parent()
+	if parent == self:
+		return
 	if area.is_in_group("stations"):
 		parent.queue_free()
-	#todo main.call_deferred("add_station")
+		Globals.num_actual_stations -= 1
+
 	pass

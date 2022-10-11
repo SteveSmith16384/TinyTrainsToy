@@ -5,13 +5,15 @@ const RELEASE_MODE = false
 
 const SHOW_FPS = false and !RELEASE_MODE
 
-const MAP_WIDTH = 500
-const MAP_HEIGHT = 500
+const MAP_WIDTH = 800
+const MAP_HEIGHT = 600
 const SQ_SIZE = 10
 const MAX_COLOURS = 3
 
 var next_pri : int = 0
 var next_station_colour :int = 0
+var num_required_stations = 3
+var num_actual_stations = 0
 
 var rnd : RandomNumberGenerator
 
