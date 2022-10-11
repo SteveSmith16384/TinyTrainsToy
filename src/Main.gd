@@ -89,3 +89,10 @@ func _on_BuyTrainButton_pressed():
 	else:
 		$HUD.set_status_text("No track selected")
 	pass
+
+
+func game_over():
+	# todo
+	pass
+	
+	

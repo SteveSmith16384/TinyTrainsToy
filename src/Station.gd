@@ -14,6 +14,10 @@ func _ready():
 
 
 func _on_NewPassengerTimer_timeout():
+	if passengers.size() >= Globals.NUM_PASSENGERS_GAME_OVER:
+		main.game_over()
+		return
+		
 	var col = Globals.get_random_colour()
 	while (col == colour): # Make sure passenger is diff colour
 		col = Globals.get_random_colour()
@@ -54,3 +58,4 @@ func _on_FlashTimer_timeout():
 	else:
 		visible = not visible
 	pass 
+

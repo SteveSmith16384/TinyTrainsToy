@@ -45,6 +45,9 @@ script = ExtResource( 3 )
 wait_time = 20.0
 autostart = true
 
+[node name="OneSecTimer" type="Timer" parent="Map"]
+autostart = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PopupMenu" type="PopupMenu" parent="CanvasLayer"]
@@ -53,3 +56,4 @@ margin_bottom = 20.0
 
 [connection signal="pressed" from="HUD/VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_pressed"]
 [connection signal="timeout" from="Map/NewStationTimer" to="Map" method="_on_NewStationTimer_timeout"]
+[connection signal="timeout" from="Map/OneSecTimer" to="Map" method="_on_OneSecTimer_timeout"]

@@ -15,7 +15,7 @@ const NUM_PASSENGERS_GAME_OVER = 8
 var next_pri : int = 0
 var next_station_colour :int = 0
 var num_required_stations = 3
-var num_actual_stations = 0
+#var num_actual_stations = 0
 
 var rnd : RandomNumberGenerator
 
@@ -49,7 +49,7 @@ func get_texture(col:int):
 	match (col):
 		0: return load("res://Assets/Sprites/green_circle.png")
 		1: return load("res://Assets/Sprites/red_circle.png")
-		2: return load("res://AsseGamts/Sprites/yellow_circle.png")
+		2: return load("res://Assets/Sprites/yellow_circle.png")
 		_: 
 			print("ERROR " + str(col))
 			return null
