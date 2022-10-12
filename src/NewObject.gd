@@ -16,13 +16,19 @@ func _process(_delta):
 	if count > 3:
 		if clear:
 			create_object()
-		call_deferred("queue_free")
+			call_deferred("queue_free")
+		else:
+			#todo - put in new position!
+			position = Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
+
+			clear = true
 	pass
 	
 
 func create_object():
 	var p = self.get_parent()
 	var c = self.payload#get_children()[0]
+	c.position = self.position
 	self.remove_child(payload)
 	p.add_child(c)
 	pass

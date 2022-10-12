@@ -37,21 +37,6 @@ func update_passenger_list():
 	pass
 
 
-func _on_AreaStationCloseCheck_area_entered(area): # todo - delete
-	var parent = area.get_parent()
-	if parent == self:
-		return
-	if area.is_in_group("stations"):
-		Globals.num_actual_stations -= 1
-		Globals.next_station_colour -= 1
-		if self.time > parent.time:
-			parent.queue_free()
-		else:
-#			if is_instance_valid(parent):
-			self.queue_free()
-	pass
-
-
 func _on_FlashTimer_timeout():
 	if passengers.size() < Globals.NUM_PASSENGERS_WARNING:
 		visible = true

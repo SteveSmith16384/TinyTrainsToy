@@ -4,7 +4,8 @@ var train_line_class = preload("res://TrainLine.tscn")
 
 var dragging = false
 var selected_junction = null
-var mouse_pos
+var mouse_pos : Vector2
+var prev_mouse_pos : Vector2
 var prev_button_mask: int = 0
 
 func _input(event):
@@ -21,6 +22,7 @@ func _input(event):
 					dragging = true
 			else:
 				selected_junction = null
+				dragging = true # dragging map
 			pass
 			prev_button_mask = ev.button_mask
 		else: # Released
@@ -32,13 +34,20 @@ func _input(event):
 			else:
 				selected_junction = null
 		pass
+		prev_mouse_pos = event.position
 	elif event is InputEventMouseMotion:
 		#print("Mouse Motion at: ", event.position)
 		mouse_pos = event.position
-		if selected_junction != null and dragging:
-			selected_junction.position = $Map.get_local_mouse_position()
-			selected_junction.set_curve_point()
+		if dragging:
+			if selected_junction != null:
+				selected_junction.position = $Map.get_local_mouse_position()
+				selected_junction.set_curve_point()
+			elif prev_button_mask == 2:
+				var offset = event.position - prev_mouse_pos
+				$Map.position += offset
 		pass
+		prev_mouse_pos = event.position
+		
 	pass
 
 

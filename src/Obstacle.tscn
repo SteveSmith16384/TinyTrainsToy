@@ -3,7 +3,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.0
 
-[node name="Obstacle" type="Node2D"]
+[node name="Obstacle" type="Node2D" groups=["obstacles"]]
 
 [node name="Area2D" type="Area2D" parent="."]
 

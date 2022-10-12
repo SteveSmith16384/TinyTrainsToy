@@ -14,7 +14,8 @@ const NUM_PASSENGERS_GAME_OVER = 8
 
 var next_pri : int = 0
 var next_station_colour :int = 0
-var num_required_stations = 3
+
+var num_required_stations = 3 # todo - remove
 #var num_actual_stations = 0
 
 var rnd : RandomNumberGenerator
