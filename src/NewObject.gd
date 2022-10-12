@@ -18,9 +18,9 @@ func _process(_delta):
 			create_object()
 			call_deferred("queue_free")
 		else:
-			#todo - put in new position!
+			#put in new position!
 			position = Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
-
+			count = 0
 			clear = true
 	pass
 	

@@ -7,8 +7,13 @@ var selected_junction = null
 var mouse_pos : Vector2
 var prev_mouse_pos : Vector2
 var prev_button_mask: int = 0
+var mouse_over_icons = false
+var zoom_pos : float = 1
 
 func _input(event):
+	if mouse_over_icons:
+		return
+		
 	# Mouse in viewport coordinates.
 	if event is InputEventMouseButton:
 		dragging = false
@@ -20,6 +25,17 @@ func _input(event):
 				if sel != null:
 					selected_junction = sel
 					dragging = true
+			# zoom in
+			elif event.button_index == BUTTON_WHEEL_UP:
+				zoom_pos += 0.03#get_global_mouse_position()
+				#print(zoom_pos)
+				$Map.scale.x = zoom_pos
+				$Map.scale.y = zoom_pos
+			elif event.button_index == BUTTON_WHEEL_DOWN:
+				zoom_pos -= 0.03#get_global_mouse_position()
+				#print(zoom_pos)
+				$Map.scale.x = zoom_pos
+				$Map.scale.y = zoom_pos
 			else:
 				selected_junction = null
 				dragging = true # dragging map
@@ -27,10 +43,10 @@ func _input(event):
 			prev_button_mask = ev.button_mask
 		else: # Released
 			if prev_button_mask == 1:
-				if ev.position.x > $Map.position.x:
-					var adj_pos = $Map.get_local_mouse_position()
-					check_intersection(ev.position, adj_pos)
-					pass
+#				if ev.position.x > $Map.position.x:
+				var adj_pos = $Map.get_local_mouse_position()
+				check_intersection(ev.position, adj_pos)
+				pass
 			else:
 				selected_junction = null
 		pass
@@ -47,7 +63,6 @@ func _input(event):
 				$Map.position += offset
 		pass
 		prev_mouse_pos = event.position
-		
 	pass
 
 
@@ -84,7 +99,7 @@ func _process(_delta):
 	
 
 func _draw():
-	if mouse_pos != null and selected_junction != null:
+	if mouse_pos != null and selected_junction != null and mouse_over_icons == false:
 		var train_line = selected_junction.get_parent()
 		var end = train_line.get_end_pos() + $Map.position
 		draw_line(end, mouse_pos, Color.gray, 2)
@@ -103,5 +118,13 @@ func _on_BuyTrainButton_pressed():
 func game_over():
 	# todo
 	pass
-	
-	
+
+
+func _on_BuyTrainButton_mouse_entered():
+	mouse_over_icons = true
+	pass
+
+
+func _on_BuyTrainButton_mouse_exited():
+	mouse_over_icons = false
+	pass

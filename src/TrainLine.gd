@@ -13,9 +13,6 @@ func get_end_pos():
 
 	
 func add_junction(pos:Vector2):
-	if pos.x < 0:
-		return
-		
 	var junc = junction_class.instance()
 	junc.position = pos
 	junc.point_idx = curve.get_point_count()

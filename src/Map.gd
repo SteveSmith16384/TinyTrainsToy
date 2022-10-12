@@ -13,7 +13,8 @@ func _ready():
 	
 
 func _on_NewStationTimer_timeout():
-	Globals.num_required_stations += 1
+#	Globals.num_required_stations += 1
+	add_station()
 	$NewStationTimer.wait_time += 20# $NewStationTimer.wait_time * 2
 	pass
 
@@ -46,14 +47,3 @@ func add_obstacle():
 	add_child(obj)
 	pass
 
-
-func _on_OneSecTimer_timeout():
-	return 
-
-	var num_actual_stations = 0
-	for ch in get_children():
-		if ch.is_in_group("stations"):
-			num_actual_stations += 1
-	if num_actual_stations < Globals.num_required_stations:
-		add_station()
-	pass

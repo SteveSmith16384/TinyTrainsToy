@@ -15,9 +15,6 @@ const NUM_PASSENGERS_GAME_OVER = 8
 var next_pri : int = 0
 var next_station_colour :int = 0
 
-var num_required_stations = 3 # todo - remove
-#var num_actual_stations = 0
-
 var rnd : RandomNumberGenerator
 
 func _ready():
@@ -59,8 +56,8 @@ func get_texture(col:int):
 
 func get_next_station_colour():
 	next_station_colour += 1
-	while (next_station_colour < 0):
-		next_station_colour += 1
+#	while (next_station_colour < 0):
+#		next_station_colour += 1
 	if next_station_colour >= MAX_COLOURS:
 		next_station_colour = 0
 	return next_station_colour
