@@ -8,7 +8,11 @@ var colour : int
 onready var time = OS.get_ticks_msec()
 
 func _ready():
-	colour = Globals.get_next_station_colour_number()
+	if Globals.num_stations <= Globals.MAX_STATION_COLOURS:
+		colour = Globals.get_next_station_colour_number()
+	else:
+		colour = Globals.get_random_colour_number()
+		
 	$Sprite.texture = Globals.get_texture(colour)
 	add_passenger()
 	pass
@@ -32,10 +36,10 @@ func add_passenger():
 	pass
 
 
-func clear_passengers():
-	passengers.clear()
-	update_passenger_list()
-	pass
+#func clear_passengers():
+#	passengers.clear()
+#	update_passenger_list()
+#	pass
 	
 
 func update_passenger_list():

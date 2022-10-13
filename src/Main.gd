@@ -19,17 +19,18 @@ func _input(event):
 		var ev: InputEventMouseButton = event
 		if ev.pressed:
 			if ev.button_mask == 1:
-				#var adj_pos = $Map.get_local_mouse_position()
 				var sel = get_selection_at(ev.position)
 				if sel != null:
 					selected_junction = sel
 					dragging = true
-			# zoom in
 			elif event.button_index == BUTTON_WHEEL_UP:
 				pass
 			elif event.button_index == BUTTON_WHEEL_DOWN:
 				pass
 			else:
+				if selected_junction != null:
+					if selected_junction.get_parent().curve.get_point_count() <= 1:
+						selected_junction.get_parent().queue_free()
 				selected_junction = null
 				#dragging = true # dragging map
 			pass

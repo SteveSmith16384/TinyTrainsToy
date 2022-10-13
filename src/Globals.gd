@@ -8,7 +8,7 @@ const SHOW_FPS = false and !RELEASE_MODE
 const MAP_WIDTH = 1920-200
 const MAP_HEIGHT = 1080-200
 const SQ_SIZE = 10
-const MAX_SPRITE_COLOURS = 3
+const MAX_STATION_COLOURS = 3
 const MAX_TRACK_COLOURS = 5
 const NUM_PASSENGERS_WARNING = 6
 const NUM_PASSENGERS_GAME_OVER = 8
@@ -43,7 +43,7 @@ func get_next_priority():
 
 
 func get_random_colour_number():
-	return rnd.randi_range(0, MAX_SPRITE_COLOURS-1)
+	return rnd.randi_range(0, MAX_STATION_COLOURS-1)
 	
 
 func get_texture(col:int):
@@ -59,7 +59,7 @@ func get_texture(col:int):
 
 func get_next_station_colour_number() -> int:
 	next_station_colour += 1
-	if next_station_colour >= MAX_SPRITE_COLOURS:
+	if next_station_colour >= MAX_STATION_COLOURS:
 		next_station_colour = 0
 	return next_station_colour
 	

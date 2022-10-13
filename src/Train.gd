@@ -44,13 +44,17 @@ func _on_Area2D_area_entered(area):
 		# Embark new passengers
 		#wait_for += parent.passengers.size() / 2
 
-		for num in 6-passengers.size(): # Max 6!
-			if station.passengers.size() > 0:
-				var p = station.passengers.pop_back()
-				passengers.push_back(p)
+		var space = 6-passengers.size() # Max 6!
+		if space > 0:
+			for num in space:
+				if station.passengers.size() > 0:
+					var p = station.passengers.pop_back()
+					passengers.push_back(p)
+				else:
+					break
+			station.update_passenger_list()
 #		passengers.append_array(station.passengers)
 		#station.clear_passengers()
-
 		$PassengerList.update()
 		
 	elif parent.is_in_group("trains"):

@@ -44,6 +44,7 @@ func add_train():
 func _draw():
 	var points = curve.get_baked_points()
 	if points.size() > 1:
-		draw_polyline(points, colour, 5.0)
+		draw_polyline(points, Color.black, 9.0)
+		draw_polyline(points, colour, 6.0)
 	pass
 	
