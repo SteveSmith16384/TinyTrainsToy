@@ -8,7 +8,6 @@ var mouse_pos : Vector2
 var prev_mouse_pos : Vector2
 var prev_button_mask: int = 0
 var mouse_over_icons = false
-var zoom_pos : float = 1
 
 func _input(event):
 	if mouse_over_icons:
@@ -27,23 +26,16 @@ func _input(event):
 					dragging = true
 			# zoom in
 			elif event.button_index == BUTTON_WHEEL_UP:
-				zoom_pos += 0.03#get_global_mouse_position()
-				#print(zoom_pos)
-				$Map.scale.x = zoom_pos
-				$Map.scale.y = zoom_pos
+				pass
 			elif event.button_index == BUTTON_WHEEL_DOWN:
-				zoom_pos -= 0.03#get_global_mouse_position()
-				#print(zoom_pos)
-				$Map.scale.x = zoom_pos
-				$Map.scale.y = zoom_pos
+				pass
 			else:
 				selected_junction = null
-				dragging = true # dragging map
+				#dragging = true # dragging map
 			pass
 			prev_button_mask = ev.button_mask
-		else: # Released
+		elif ev.button_index == prev_button_mask: # Released
 			if prev_button_mask == 1:
-#				if ev.position.x > $Map.position.x:
 				var adj_pos = $Map.get_local_mouse_position()
 				check_intersection(ev.position, adj_pos)
 				pass
@@ -74,6 +66,8 @@ func get_selection_at(screen_position:Vector2):
 			var parent = area.get_parent()
 			if parent.is_in_group("junctions"):
 				return parent
+			elif parent.is_in_group("trains"):
+				parent.dir = parent.dir * -1
 	pass
 	
 		
@@ -101,8 +95,8 @@ func _process(_delta):
 func _draw():
 	if mouse_pos != null and selected_junction != null and mouse_over_icons == false:
 		var train_line = selected_junction.get_parent()
-		var end = train_line.get_end_pos() + $Map.position
-		draw_line(end, mouse_pos, Color.gray, 2)
+		var end = (train_line.get_end_pos() + $Map.position) * $Map.scale
+		draw_line(end, mouse_pos, Color.gray, 4)
 	pass
 	
 	

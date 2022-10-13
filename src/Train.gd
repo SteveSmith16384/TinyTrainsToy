@@ -17,7 +17,7 @@ func _process(delta):
 		return
 		
 	if num_colliding_trains == 0:
-		offset += delta * 20 * dir
+		offset += delta * 30 * dir
 		if dir == 1 and unit_offset >= .99:
 			dir = -1
 		elif dir == -1 and unit_offset <= 0.01:

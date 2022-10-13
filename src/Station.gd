@@ -8,7 +8,7 @@ var colour : int
 onready var time = OS.get_ticks_msec()
 
 func _ready():
-	colour = Globals.get_next_station_colour()
+	colour = Globals.get_next_station_colour_number()
 	$Sprite.texture = Globals.get_texture(colour)
 	pass
 
@@ -18,9 +18,9 @@ func _on_NewPassengerTimer_timeout():
 		main.game_over()
 		return
 		
-	var col = Globals.get_random_colour()
-	while (col == colour): # Make sure passenger is diff colour
-		col = Globals.get_random_colour()
+	var col = Globals.get_random_colour_number()
+	while (col == colour): 
+		col = Globals.get_random_colour_number()
 	passengers.push_back(col)
 	update_passenger_list()
 	pass
@@ -44,3 +44,12 @@ func _on_FlashTimer_timeout():
 		visible = not visible
 	pass 
 
+
+func get_new_position():
+	var mx = Globals.MAP_WIDTH / 2
+	var my = Globals.MAP_HEIGHT / 2
+	var rad = Globals.num_stations * 100
+	if rad >= mx:
+		rad = mx
+	var pos = Vector2(Globals.rnd.randi_range(mx-rad, mx+rad), Globals.rnd.randi_range(my-rad, my+rad))
+	return pos

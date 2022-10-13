@@ -7,7 +7,7 @@ var new_object_class = preload("res://NewObject.tscn")
 func _ready():
 	for i in 3:
 		add_station()
-	for i in 5:
+	for i in 7:
 		add_obstacle()
 	pass
 	
@@ -20,13 +20,12 @@ func _on_NewStationTimer_timeout():
 
 
 func add_station():
+	Globals.num_stations += 1
 	var station = station_class.instance()
-#	var pos = Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
-#	station.position = pos
 	
 	var obj = new_object_class.instance()
-	var pos = Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
-	obj.position = pos
+	
+	obj.position = station.get_new_position()
 	obj.add_child(station)
 	obj.payload = station
 
@@ -36,14 +35,13 @@ func add_station():
 
 func add_obstacle():
 	var obs = obstacle_class.instance()
-	var pos = Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
-	obs.position = pos
-	
 	var obj = new_object_class.instance()
+	var pos = obs.get_new_position()# Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
 	obj.position = pos
-	obj.add_child(obs)
-	obj.payload = obs
-
 	add_child(obj)
+
+	obj.payload = obs
+	obj.add_child(obs)
+
 	pass
 

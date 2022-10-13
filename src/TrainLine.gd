@@ -2,9 +2,11 @@ extends Path2D
 
 var junction_class = preload("res://Junction.tscn")
 var train_class = preload("res://Train.tscn")
+var colour : Color
 
 func _ready():
-	self.self_modulate = Color.black
+	colour = Globals.get_next_track_colour()
+	self.self_modulate = colour #Color.black
 	pass
 
 
@@ -33,6 +35,6 @@ func add_train():
 func _draw():
 	var points = curve.get_baked_points()
 	if points.size() > 1:
-		draw_polyline(points, Color.black, 5.0)
+		draw_polyline(points, colour, 5.0)
 	pass
 	

@@ -5,15 +5,18 @@ const RELEASE_MODE = false
 
 const SHOW_FPS = false and !RELEASE_MODE
 
-const MAP_WIDTH = 800
-const MAP_HEIGHT = 600
+const MAP_WIDTH = 1920-200
+const MAP_HEIGHT = 1080-200
 const SQ_SIZE = 10
-const MAX_COLOURS = 3
+const MAX_SPRITE_COLOURS = 3
+const MAX_TRACK_COLOURS = 5
 const NUM_PASSENGERS_WARNING = 6
 const NUM_PASSENGERS_GAME_OVER = 8
 
 var next_pri : int = 0
 var next_station_colour :int = 0
+var next_track_colour :int = 0
+var num_stations:int = 0
 
 var rnd : RandomNumberGenerator
 
@@ -27,9 +30,9 @@ func _ready():
 	
 
 func gridify_pos(pos : Vector2):
-	var x : int = pos.x / SQ_SIZE
+	var x : int = pos.x / float(SQ_SIZE)
 	x = x * SQ_SIZE
-	var y : int = pos.y / SQ_SIZE
+	var y : int = pos.y / float(SQ_SIZE)
 	y = y * SQ_SIZE
 	return Vector2(x, y)
 	
@@ -39,8 +42,8 @@ func get_next_priority():
 	return next_pri
 
 
-func get_random_colour():
-	return rnd.randi_range(0, MAX_COLOURS-1)
+func get_random_colour_number():
+	return rnd.randi_range(0, MAX_SPRITE_COLOURS-1)
 	
 
 func get_texture(col:int):
@@ -54,12 +57,22 @@ func get_texture(col:int):
 	pass
 
 
-func get_next_station_colour():
+func get_next_station_colour_number() -> int:
 	next_station_colour += 1
-#	while (next_station_colour < 0):
-#		next_station_colour += 1
-	if next_station_colour >= MAX_COLOURS:
+	if next_station_colour >= MAX_SPRITE_COLOURS:
 		next_station_colour = 0
 	return next_station_colour
 	
 	
+func get_next_track_colour() -> Color:
+	next_track_colour += 1
+	if next_track_colour >= MAX_TRACK_COLOURS:
+		next_track_colour = 0
+	match next_track_colour:
+		0: return Color.yellow
+		1: return Color.green
+		2: return Color.blue
+		3: return Color.magenta
+		4: return Color.cyan
+		5: return Color.red
+	return Color.black
