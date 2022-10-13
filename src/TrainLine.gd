@@ -3,6 +3,7 @@ extends Path2D
 var junction_class = preload("res://Junction.tscn")
 var train_class = preload("res://Train.tscn")
 var colour : Color
+var prev_junction
 
 func _ready():
 	colour = Globals.get_next_track_colour()
@@ -19,7 +20,15 @@ func add_junction(pos:Vector2):
 	junc.position = pos
 	junc.point_idx = curve.get_point_count()
 	self.add_child(junc)
+	
+	if prev_junction != null:
+		prev_junction.get_node("TrackSprite").queue_free()
+	prev_junction = junc
 
+	if curve.get_point_count() > 0:
+		junc.get_node("TrainSprite").queue_free()
+#	else:
+#		junc.get_node("TrackSprite").queue_free()
 	curve.add_point(pos)
 	update()
 	return junc

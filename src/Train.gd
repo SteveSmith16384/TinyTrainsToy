@@ -31,20 +31,27 @@ func _on_Area2D_area_entered(area):
 		return
 	if parent.is_in_group("stations"):
 		wait_for = 1
+		var station = parent
 		
 		# Alight carried passengers
 		var new_list = []
 		for idx in passengers.size():
-			if passengers[idx] != parent.colour:
+			if passengers[idx] != station.colour:
 				new_list.push_back(passengers[idx])
 				#wait_for += 0.5
 		passengers = new_list
 
 		# Embark new passengers
 		#wait_for += parent.passengers.size() / 2
-		passengers.append_array(parent.passengers)
+
+		for num in 6-passengers.size(): # Max 6!
+			if station.passengers.size() > 0:
+				var p = station.passengers.pop_back()
+				passengers.push_back(p)
+#		passengers.append_array(station.passengers)
+		#station.clear_passengers()
+
 		$PassengerList.update()
-		parent.clear_passengers()
 		
 	elif parent.is_in_group("trains"):
 		if parent.get_parent() != self.get_parent(): # Only collide with trains on diff tracks

@@ -84,6 +84,8 @@ func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 			# Continue existing line
 			var train_line = selected_junction.get_parent()
 			selected_junction = train_line.add_junction(map_position)
+			if train_line.curve.get_point_count() == 2:
+				buy_train()
 	pass
 	
 	
@@ -101,6 +103,11 @@ func _draw():
 	
 	
 func _on_BuyTrainButton_pressed():
+	buy_train()
+	pass
+	
+	
+func buy_train():
 	if selected_junction != null:
 		var train_line = selected_junction.get_parent()
 		train_line.add_train()

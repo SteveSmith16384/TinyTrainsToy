@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Junction.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/transp_circle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/train_icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/track_icon.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 16.0312
 
 [node name="Junction" type="Node2D" groups=["junctions"]]
 script = ExtResource( 1 )
@@ -14,4 +17,12 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
+
+[node name="TrainSprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="TrackSprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
