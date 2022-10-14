@@ -7,15 +7,14 @@ var new_object_class = preload("res://NewObject.tscn")
 func _ready():
 	for i in 3:
 		add_station()
-	for i in 7:
+	for i in 9:
 		add_obstacle()
 	pass
 	
 
 func _on_NewStationTimer_timeout():
-#	Globals.num_required_stations += 1
 	add_station()
-	$NewStationTimer.wait_time += 20# $NewStationTimer.wait_time * 2
+	$NewStationTimer.wait_time += 3
 	pass
 
 

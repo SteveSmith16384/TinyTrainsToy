@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Station.gd" type="Script" id=1]
 [ext_resource path="res://PassengerList.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Sprites/station_icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/cyan_circle.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 17.0
+radius = 25.0799
 
 [node name="Station" type="Node2D" groups=["stations"]]
 script = ExtResource( 1 )
@@ -23,6 +24,11 @@ wait_time = 20.0
 autostart = true
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.6, 1.6 )
+texture = ExtResource( 4 )
+
+[node name="StationIcon" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 
 [node name="FlashTimer" type="Timer" parent="."]
