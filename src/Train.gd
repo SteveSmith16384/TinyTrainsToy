@@ -30,7 +30,7 @@ func _on_Area2D_area_entered(area):
 	if area.get_parent() == self:
 		return
 	if parent.is_in_group("stations"):
-		wait_for = 1
+		var waiting = false
 		var station = parent
 		
 		# Alight carried passengers
@@ -38,6 +38,8 @@ func _on_Area2D_area_entered(area):
 		for idx in passengers.size():
 			if passengers[idx] != station.colour:
 				new_list.push_back(passengers[idx])
+			else:
+				waiting = true
 				#wait_for += 0.5
 		passengers = new_list
 
@@ -50,9 +52,13 @@ func _on_Area2D_area_entered(area):
 				if station.passengers.size() > 0:
 					var p = station.passengers.pop_back()
 					passengers.push_back(p)
+					waiting = true
 				else:
 					break
 			station.update_passenger_list()
+		
+		if waiting:
+			wait_for = 1
 #		passengers.append_array(station.passengers)
 		#station.clear_passengers()
 		$PassengerList.update()

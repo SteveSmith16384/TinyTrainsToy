@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://Map.gd" type="Script" id=3]
+[ext_resource path="res://Assets/fonts/zx_spectrum-7.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 2
+font_data = ExtResource( 4 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -35,20 +41,50 @@ margin_bottom = 20.0
 text = "BUY TRAIN"
 
 [node name="CenterContainer" type="CenterContainer" parent="HUD"]
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-margin_top = -14.0
+margin_left = -960.0
+margin_top = -64.0
+margin_right = 960.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="HUD/CenterContainer"]
-margin_left = 927.0
-margin_right = 992.0
-margin_bottom = 14.0
+margin_left = 847.0
+margin_right = 1073.0
+margin_bottom = 64.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "TEXT HERE"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HUD"]
+margin_top = 112.0
+margin_right = 740.0
+margin_bottom = 318.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeToNextStation" type="Label" parent="HUD/VBoxContainer2"]
+margin_right = 740.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Next Station: "
+
+[node name="TimeToNextStation2" type="Label" parent="HUD/VBoxContainer2"]
+margin_top = 68.0
+margin_right = 740.0
+margin_bottom = 132.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Tracks Left:"
 
 [connection signal="timeout" from="Map/NewStationTimer" to="Map" method="_on_NewStationTimer_timeout"]
 [connection signal="mouse_entered" from="HUD/VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_entered"]

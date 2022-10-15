@@ -8,6 +8,7 @@ var mouse_pos : Vector2
 var prev_mouse_pos : Vector2
 var prev_button_mask: int = 0
 var mouse_over_icons = false
+var game_is_over = false
 
 func _input(event):
 	if mouse_over_icons:
