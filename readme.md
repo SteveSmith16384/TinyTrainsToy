@@ -5,7 +5,8 @@
 * The coloured dots against stations and trains shows you how many passengers there are and where they want to go.
 * Passengers will automatically embark and alight if the train touches a station.
 * At the moment there's no objective.
-
+* If two trains on different tracks collide, they will both pause for a few seconds.
+* Buy a train buy clicking on the Buy Train icon.
 
 
 ##CONTROLS

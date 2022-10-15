@@ -3,13 +3,12 @@ extends Path2D
 var junction_class = preload("res://Junction.tscn")
 var train_class = preload("res://Train.tscn")
 var colour : Color
-#var prev_junction
 var junctions = []
 
 
 func _ready():
 	colour = Globals.get_next_track_colour()
-	self.self_modulate = colour #Color.black
+	self.self_modulate = colour
 	pass
 
 

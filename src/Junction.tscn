@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Junction.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/transp_circle.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/train_icon.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/track_icon.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/transp_circle_highligh.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 16.0312
@@ -26,3 +27,9 @@ texture = ExtResource( 3 )
 
 [node name="TrackSprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
+
+[node name="SpriteHighlighted" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

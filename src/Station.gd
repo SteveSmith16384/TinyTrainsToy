@@ -19,6 +19,9 @@ func _ready():
 
 
 func _on_NewPassengerTimer_timeout():
+	if main.game_is_over:
+		return
+		
 	if passengers.size() >= Globals.NUM_PASSENGERS_GAME_OVER:
 		main.game_over()
 		return

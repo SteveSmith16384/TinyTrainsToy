@@ -12,8 +12,8 @@ func set_status_text(s:String):
 	pass
 	
 
-func set_score(s: int):
-	$VBoxContainer2/Score.text = "SCORE: " + str(s)
+func set_money(s: int):
+	$VBoxContainer2/Score.text = "MONEY: $" + str(s)
 	pass
 
 

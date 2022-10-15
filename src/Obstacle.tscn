@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Sprites/mountains.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 50.0
+radius = 45.0
 
 [node name="Obstacle" type="Node2D" groups=["obstacles"]]
 script = ExtResource( 1 )

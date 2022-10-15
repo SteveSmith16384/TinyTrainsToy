@@ -4,6 +4,9 @@ var station_class = preload("res://Station.tscn")
 var obstacle_class = preload("res://Obstacle.tscn")
 var new_object_class = preload("res://NewObject.tscn")
 
+onready var main = get_tree().get_root().get_node("Main")
+
+
 func _ready():
 	for i in 3:
 		add_station()
@@ -13,8 +16,11 @@ func _ready():
 	
 
 func _on_NewStationTimer_timeout():
+	if main.game_is_over:
+		return
+		
 	add_station()
-	$NewStationTimer.wait_time += 3
+	$NewStationTimer.wait_time += 4
 	pass
 
 

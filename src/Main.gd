@@ -9,7 +9,7 @@ var prev_mouse_pos : Vector2
 var prev_button_mask: int = 0
 var mouse_over_icons = false
 var game_is_over = false
-var score: float = 100.0
+var money: float = 100.0
 
 func _input(event):
 	if mouse_over_icons:
@@ -95,7 +95,7 @@ func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 			var train_line = selected_junction.get_parent()
 			selected_junction = train_line.add_junction(map_position)
 			if train_line.curve.get_point_count() == 2:
-				buy_train()
+				buy_train(true)
 	pass
 	
 	
@@ -114,20 +114,27 @@ func _draw():
 	pass
 	
 	
-func buy_train():
+func buy_train(free:bool):
+	if not free and money < 100:
+		$HUD.set_status_text("Not enough money!")
+		return
+		
 	if selected_junction != null:
 		var train_line = selected_junction.get_parent()
 		train_line.add_train()
+		if not free:
+			money -= 100
 	else:
 		$HUD.set_status_text("No track selected")
 	pass
 
 
 func game_over():
-	# todo
+	$HUD.set_status_text("GAME OVER!")
+	game_is_over = true
 	pass
 
 
 func _on_OneSecTimer_timeout():
-	$HUD.set_score(int(score))
+	$HUD.set_money(int(money))
 	pass

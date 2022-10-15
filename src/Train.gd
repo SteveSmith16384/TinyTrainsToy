@@ -13,8 +13,15 @@ func _ready():
 	loop = false
 	pass
 
+
 func _process(delta):
-	main.score -= delta
+	if main.game_is_over:
+		return
+		
+	main.money -= delta
+	if main.money <= 0:
+		main.game_over()
+		return
 	
 	if wait_for > 0:
 		wait_for -= delta
@@ -23,9 +30,20 @@ func _process(delta):
 	if num_colliding_trains == 0:
 		offset += delta * 40 * dir
 		if dir == 1 and unit_offset >= .99:
-			dir = -1
+			var pos = get_parent().curve.get_point_position(0)
+			var dist = pos.distance_to(self.position)
+			if dist < 30:
+				offset = 0
+			else:
+				dir = -1
 		elif dir == -1 and unit_offset <= 0.01:
-			dir = 1
+			var curve: Curve2D = get_parent().curve
+			var pos = curve.get_point_position(curve.get_point_count()-1)
+			var dist = pos.distance_to(self.position)
+			if dist < 30:
+				offset = 1
+			else:
+				dir = 1
 	pass
 
 
@@ -45,7 +63,7 @@ func _on_Area2D_area_entered(area):
 				new_passenger_list.push_back(passengers[idx])
 			else:
 				waiting = true
-				main.score += 6
+				main.money += 6
 				#wait_for += 0.5
 		passengers = new_passenger_list
 

@@ -2,6 +2,10 @@ extends Node2D
 
 #var point_idx : int
 
+func _ready():
+	$SpriteHighlighted.visible = false
+	pass
+		
 
 func set_curve_point():
 	var train_line = self.get_parent()
@@ -13,3 +17,13 @@ func set_curve_point():
 	pass
 	
 	
+
+
+func _on_Area2D_mouse_entered():
+	$SpriteHighlighted.visible = true
+	pass
+
+
+func _on_Area2D_mouse_exited():
+	$SpriteHighlighted.visible = false
+	pass
