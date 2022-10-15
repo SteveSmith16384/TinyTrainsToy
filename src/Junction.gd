@@ -1,10 +1,17 @@
 extends Node2D
 
+onready var main = get_tree().get_root().get_node("Main")
+
 func _ready():
 	$SpriteHighlighted.visible = false
 	pass
 		
 
+func _process(delta):
+	$SpriteSelected.visible = self == main.selected_junction
+	pass
+	
+	
 func set_curve_point():
 	var train_line = self.get_parent()
 	var point_idx = train_line.junctions.find(self)

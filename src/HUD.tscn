@@ -66,6 +66,24 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Score:"
 
+[node name="TracksLeft" type="Label" parent="VBoxContainer2"]
+margin_top = 136.0
+margin_right = 740.0
+margin_bottom = 200.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Score:"
+
+[node name="TimeToNextStation" type="Label" parent="VBoxContainer2"]
+margin_top = 204.0
+margin_right = 740.0
+margin_bottom = 268.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Score:"
+
 [connection signal="mouse_entered" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_pressed"]

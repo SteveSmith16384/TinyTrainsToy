@@ -13,6 +13,13 @@ var money: float = 100.0
 var time_secs: int = 0
 var bought_train = false
 
+
+func _ready():
+	update_tracks_left()
+	$HUD.set_money(int(money))
+	pass
+	
+	
 func _input(event):
 	if mouse_over_icons:
 		return
@@ -34,9 +41,11 @@ func _input(event):
 			else:
 				if selected_junction != null:
 					if selected_junction.get_parent().curve.get_point_count() <= 1:
+						# Remove track
 						selected_junction.get_parent().queue_free()
+						Globals.num_tracks -= 1
+						update_tracks_left()
 				selected_junction = null
-				#dragging = true # dragging map
 			pass
 			prev_button_mask = ev.button_mask
 		elif ev.button_index == prev_button_mask: # Released
@@ -90,11 +99,16 @@ func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 	var sel = get_selection_at(screen_position)
 	if sel == null:
 		if selected_junction == null:
-			# start new line
-			var train_line = train_line_class.instance()
-			train_line.curve = Curve2D.new()
-			selected_junction = train_line.add_junction(map_position)
-			$Map.add_child(train_line)
+			if Globals.num_tracks <= Globals.MAX_TRACKS:
+				# start new line
+				var train_line = train_line_class.instance()
+				train_line.curve = Curve2D.new()
+				selected_junction = train_line.add_junction(map_position)
+				$Map.add_child(train_line)
+				Globals.num_tracks += 1
+				update_tracks_left()
+			else:
+				set_status_text("No tracks left!")
 		else:
 			# Continue existing line
 			var train_line = selected_junction.get_parent()
@@ -126,7 +140,7 @@ func buy_train(free:bool):
 		
 	if selected_junction != null:
 		var train_line = selected_junction.get_parent()
-		train_line.add_train()
+		train_line.add_train(selected_junction)
 		if not free:
 			money -= 100
 		bought_train = true
@@ -138,6 +152,7 @@ func buy_train(free:bool):
 
 func game_over():
 	$HUD.set_status_text("GAME OVER!")
+	$HUD.set_money(money)
 	game_is_over = true
 	pass
 
@@ -150,4 +165,16 @@ func _on_OneSecTimer_timeout():
 	if bought_train:
 		time_secs += 1
 		$HUD.set_time(time_secs)
+		
+	$HUD.set_time_to_next_station($Map/NewStationTimer.time_left)
+	pass
+
+
+func set_status_text(s:String):
+	$HUD.set_status_text(s)
+	pass
+	
+	
+func update_tracks_left():
+	$HUD.set_tracks_left(Globals.MAX_TRACKS - Globals.num_tracks)
 	pass

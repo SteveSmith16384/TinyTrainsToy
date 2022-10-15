@@ -7,13 +7,23 @@
 * It's game over if you run out of money or there's more than 8 passengers waiting at a station.
 * If two trains on different tracks collide, they will both pause for a few seconds.
 * Stations are randomly placed, and more stations are added over time.
+* The mountains are obstaclkes and will block trains
+* If the start and end points of a track are close enough together, trains will loop round
+* Trains cost $1 per second to run
+* Passengers give you money when they get to their destination
 
 
 ##CONTROLS
 * Click mouse to build a new junction.  If you've got a junction currently selected, it will connect them with track, otherwise it will start a new track.
+* Drag junctions to move them and the connecting track
 * Del to delete the selected junction
 * I to insert a junction after the selected junction
 * Right-click to deselect a junction.
+
+
+
+##FAQ
+* The colour of the tracks is only to distinguish them, it has no bearing on the game.
 
 
 Created using Godot.

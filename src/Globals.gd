@@ -19,6 +19,7 @@ var next_pri : int = 0
 var next_station_colour :int = 0
 var next_track_colour :int = 0
 var num_stations:int = 0
+var num_tracks:int = 0
 
 var rnd : RandomNumberGenerator
 

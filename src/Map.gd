@@ -8,7 +8,7 @@ onready var main = get_tree().get_root().get_node("Main")
 
 
 func _ready():
-	for i in 3:
+	for i in Globals.MAX_STATION_COLOURS:
 		add_station()
 	for i in 9:
 		add_obstacle()
@@ -40,6 +40,7 @@ func add_station():
 
 func add_obstacle():
 	var obs = obstacle_class.instance()
+	obs.visible = false
 	var obj = new_object_class.instance()
 	var pos = obs.get_new_position()
 	obj.position = pos

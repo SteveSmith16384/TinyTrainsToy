@@ -22,6 +22,16 @@ func set_time(s: int):
 	pass
 
 
+func set_time_to_next_station(s: int):
+	$VBoxContainer2/TimeToNextStation.text = "NEXT STATION IN: " + str(s) + "s"
+	pass
+
+
+func set_tracks_left(s: int):
+	$VBoxContainer2/TracksLeft.text = "TRACKS LEFT: " + str(s)
+	pass
+
+
 func _on_BuyTrainButton_mouse_entered():
 	main.mouse_over_icons = true
 	pass
