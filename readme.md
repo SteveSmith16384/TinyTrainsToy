@@ -1,4 +1,4 @@
-#TINY TRAINS TOY
+# TINY TRAINS TOY
 
 * Build tracks to connect stations and take passengers.  It's a bit like Mini Metro.
 * The coloured dots against stations and trains shows you how many passengers there are and where they want to go.
@@ -13,7 +13,7 @@
 * Passengers give you money when they get to their destination
 
 
-##CONTROLS
+## CONTROLS
 * Click mouse to build a new junction.  If you've got a junction currently selected, it will connect them with track, otherwise it will start a new track.
 * Drag junctions to move them and the connecting track
 * Del to delete the selected junction
@@ -22,7 +22,7 @@
 
 
 
-##FAQ
+## FAQ
 * The colour of the tracks is only to distinguish them, it has no bearing on the game.
 
 
