@@ -11,7 +11,8 @@
 
 ##CONTROLS
 * Click mouse to build a new junction.  If you've got a junction currently selected, it will connect them with track, otherwise it will start a new track.
-* Del to delete the last selected junction
+* Del to delete the selected junction
+* I to insert a junction after the selected junction
 * Right-click to deselect a junction.
 
 

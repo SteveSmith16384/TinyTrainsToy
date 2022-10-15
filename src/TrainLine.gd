@@ -3,7 +3,7 @@ extends Path2D
 var junction_class = preload("res://Junction.tscn")
 var train_class = preload("res://Train.tscn")
 var colour : Color
-var junctions = []
+var junctions = [] # Must be same order as curnve points
 
 
 func _ready():
@@ -19,27 +19,20 @@ func get_end_pos():
 func add_junction(pos:Vector2):
 	var junc = junction_class.instance()
 	junc.position = pos
-	#junc.point_idx = curve.get_point_count()
 	self.add_child(junc)
 	junctions.push_back(junc)
 	
-#	if prev_junction != null:
-#		prev_junction.get_node("TrackSprite").visible = false
-#	prev_junction = junc
-
 	update_junction_icons()
 	
 	if curve.get_point_count() > 0:
 		junc.get_node("TrainSprite").queue_free()
-#	else:
-#		junc.get_node("TrackSprite").queue_free()
+
 	curve.add_point(pos)
 	update()
 	return junc
 	
 
 func update_junction_icons():
-	# Update junction icons
 	for idx in junctions.size():
 		junctions[idx].get_node("TrackSprite").visible = idx >= junctions.size()-1
 	pass
@@ -60,6 +53,23 @@ func _draw():
 	pass
 	
 
+func insert_junction(orig_junc):
+	var idx = junctions.find(orig_junc)
+
+	var new_junc = junction_class.instance()
+	new_junc.position = orig_junc.position
+	self.add_child(new_junc)
+	junctions.insert(idx+1, new_junc)
+	
+	update_junction_icons()
+	
+	new_junc.get_node("TrainSprite").queue_free()
+
+	curve.add_point(orig_junc.position, Vector2(), Vector2(), idx+1)
+	update()
+	pass
+	
+	
 func delete_junction(junc):
 	var idx = junctions.find(junc)
 	if idx == 0:

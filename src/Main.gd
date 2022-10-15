@@ -67,6 +67,9 @@ func _input(event):
 				if selected_junction != null:
 					selected_junction.get_parent().delete_junction(selected_junction)
 					selected_junction = null
+			if key.scancode == KEY_I:
+				if selected_junction != null:
+					selected_junction.get_parent().insert_junction(selected_junction)
 	pass
 
 
