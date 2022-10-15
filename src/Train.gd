@@ -1,5 +1,7 @@
 extends PathFollow2D
 
+onready var main = get_tree().get_root().get_node("Main")
+
 var passengers = []
 var num_colliding_trains = 0
 var dir: int = 1
@@ -12,6 +14,8 @@ func _ready():
 	pass
 
 func _process(delta):
+	main.score -= delta
+	
 	if wait_for > 0:
 		wait_for -= delta
 		return
@@ -34,14 +38,16 @@ func _on_Area2D_area_entered(area):
 		var station = parent
 		
 		# Alight carried passengers
-		var new_list = []
+		var new_passenger_list = []
 		for idx in passengers.size():
 			if passengers[idx] != station.colour:
-				new_list.push_back(passengers[idx])
+				# Staying on the train
+				new_passenger_list.push_back(passengers[idx])
 			else:
 				waiting = true
+				main.score += 6
 				#wait_for += 0.5
-		passengers = new_list
+		passengers = new_passenger_list
 
 		# Embark new passengers
 		#wait_for += parent.passengers.size() / 2
@@ -67,6 +73,7 @@ func _on_Area2D_area_entered(area):
 		if parent.get_parent() != self.get_parent(): # Only collide with trains on diff tracks
 			if self.priority < parent.priority:
 				num_colliding_trains += 1
+				wait_for = 3
 			pass
 	elif parent.is_in_group("obstacles"):
 		dir = dir * -1

@@ -11,7 +11,7 @@ func _ready():
 	if Globals.num_stations <= Globals.MAX_STATION_COLOURS:
 		colour = Globals.get_next_station_colour_number()
 	else:
-		colour = Globals.get_random_colour_number()
+		colour = Globals.rnd.randi_range(1, Globals.MAX_STATION_COLOURS-1) # Skip 0 as it's unique!
 		
 	$Sprite.texture = Globals.get_texture(colour)
 	add_passenger()
@@ -28,9 +28,9 @@ func _on_NewPassengerTimer_timeout():
 	
 
 func add_passenger():
-	var col = Globals.get_random_colour_number()
+	var col = Globals.rnd.randi_range(0, Globals.MAX_STATION_COLOURS-1)
 	while (col == colour): 
-		col = Globals.get_random_colour_number()
+		col = Globals.rnd.randi_range(0, Globals.MAX_STATION_COLOURS-1)
 	passengers.push_back(col)
 	update_passenger_list()
 	pass

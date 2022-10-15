@@ -9,6 +9,7 @@ var prev_mouse_pos : Vector2
 var prev_button_mask: int = 0
 var mouse_over_icons = false
 var game_is_over = false
+var score: float = 100.0
 
 func _input(event):
 	if mouse_over_icons:
@@ -104,15 +105,12 @@ func _process(_delta):
 	
 
 func _draw():
+	if dragging:
+		return
 	if mouse_pos != null and selected_junction != null and mouse_over_icons == false:
 		var train_line = selected_junction.get_parent()
 		var end = (train_line.get_end_pos() + $Map.position) * $Map.scale
 		draw_line(end, mouse_pos, Color.gray, 4)
-	pass
-	
-	
-func _on_BuyTrainButton_pressed():
-	buy_train()
 	pass
 	
 	
@@ -130,11 +128,6 @@ func game_over():
 	pass
 
 
-func _on_BuyTrainButton_mouse_entered():
-	mouse_over_icons = true
-	pass
-
-
-func _on_BuyTrainButton_mouse_exited():
-	mouse_over_icons = false
+func _on_OneSecTimer_timeout():
+	$HUD.set_score(int(score))
 	pass

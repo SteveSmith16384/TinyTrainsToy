@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://HUD.gd" type="Script" id=1]
+[ext_resource path="res://Assets/fonts/zx_spectrum-7.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+outline_size = 2
+font_data = ExtResource( 2 )
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuyTrainButton" type="Button" parent="VBoxContainer"]
+margin_right = 81.0
+margin_bottom = 20.0
+text = "BUY TRAIN"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CenterContainer"]
+margin_left = 847.0
+margin_right = 1073.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "TEXT HERE"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+margin_top = 112.0
+margin_right = 740.0
+margin_bottom = 318.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeToNextStation" type="Label" parent="VBoxContainer2"]
+visible = false
+margin_right = 740.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Next Station: "
+
+[node name="Score" type="Label" parent="VBoxContainer2"]
+margin_right = 740.0
+margin_bottom = 64.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Score:"
+
+[connection signal="mouse_entered" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_pressed"]
