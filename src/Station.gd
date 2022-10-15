@@ -59,5 +59,5 @@ func get_new_position():
 	if rad >= my-50:
 		rad = my-50
 	var pos = Vector2(Globals.rnd.randi_range(mx-rad, mx+rad), Globals.rnd.randi_range(my-rad, my+rad))
-	print("New station at " + str(pos))
+	#print("New station at " + str(pos))
 	return pos

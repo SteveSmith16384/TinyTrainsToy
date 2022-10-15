@@ -1,7 +1,5 @@
 extends Node2D
 
-#var point_idx : int
-
 func _ready():
 	$SpriteHighlighted.visible = false
 	pass
@@ -16,8 +14,6 @@ func set_curve_point():
 	self.get_parent().update() # redraw the track
 	pass
 	
-	
-
 
 func _on_Area2D_mouse_entered():
 	$SpriteHighlighted.visible = true

@@ -1,5 +1,8 @@
 extends PathFollow2D
 
+const SPEED = 40
+const MONEY_PER_PASSENGER = 7
+
 onready var main = get_tree().get_root().get_node("Main")
 
 var passengers = []
@@ -28,20 +31,20 @@ func _process(delta):
 		return
 		
 	if num_colliding_trains == 0:
-		offset += delta * 40 * dir
-		if dir == 1 and unit_offset >= .99:
+		offset += delta * SPEED * dir
+		if dir == 1 and unit_offset >= .99: # todo - check if closer, not .99!
 			var pos = get_parent().curve.get_point_position(0)
 			var dist = pos.distance_to(self.position)
-			if dist < 30:
-				offset = 0
+			if dist < 35:
+				unit_offset = 0
 			else:
 				dir = -1
-		elif dir == -1 and unit_offset <= 0.01:
+		elif dir == -1 and unit_offset <= 0.01: # todo - check if closer, not .01!
 			var curve: Curve2D = get_parent().curve
 			var pos = curve.get_point_position(curve.get_point_count()-1)
 			var dist = pos.distance_to(self.position)
-			if dist < 30:
-				offset = 1
+			if dist < 35:
+				unit_offset = 1
 			else:
 				dir = 1
 	pass
@@ -63,7 +66,7 @@ func _on_Area2D_area_entered(area):
 				new_passenger_list.push_back(passengers[idx])
 			else:
 				waiting = true
-				main.money += 6
+				main.money += MONEY_PER_PASSENGER
 				#wait_for += 0.5
 		passengers = new_passenger_list
 

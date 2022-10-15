@@ -49,18 +49,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeToNextStation" type="Label" parent="VBoxContainer2"]
-visible = false
+[node name="Time" type="Label" parent="VBoxContainer2"]
 margin_right = 740.0
 margin_bottom = 64.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Next Station: "
+text = "TIME:"
 
 [node name="Score" type="Label" parent="VBoxContainer2"]
+margin_top = 68.0
 margin_right = 740.0
-margin_bottom = 64.0
+margin_bottom = 132.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )

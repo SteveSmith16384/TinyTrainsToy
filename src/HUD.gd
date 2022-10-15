@@ -17,6 +17,11 @@ func set_money(s: int):
 	pass
 
 
+func set_time(s: int):
+	$VBoxContainer2/Time.text = "TIME: " + str(s) + "s"
+	pass
+
+
 func _on_BuyTrainButton_mouse_entered():
 	main.mouse_over_icons = true
 	pass
@@ -27,8 +32,6 @@ func _on_BuyTrainButton_mouse_exited():
 	pass
 
 
-
-
 func _on_BuyTrainButton_pressed():
-	main.buy_train()
+	main.buy_train(false)
 	pass

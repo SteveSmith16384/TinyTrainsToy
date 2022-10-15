@@ -10,6 +10,8 @@ var prev_button_mask: int = 0
 var mouse_over_icons = false
 var game_is_over = false
 var money: float = 100.0
+var time_secs: int = 0
+var bought_train = false
 
 func _input(event):
 	if mouse_over_icons:
@@ -124,8 +126,10 @@ func buy_train(free:bool):
 		train_line.add_train()
 		if not free:
 			money -= 100
+		bought_train = true
+		$HUD.set_status_text("Train purchased")
 	else:
-		$HUD.set_status_text("No track selected")
+		$HUD.set_status_text("No track/junction selected")
 	pass
 
 
@@ -136,5 +140,11 @@ func game_over():
 
 
 func _on_OneSecTimer_timeout():
+	if game_is_over:
+		return
+		
 	$HUD.set_money(int(money))
+	if bought_train:
+		time_secs += 1
+		$HUD.set_time(time_secs)
 	pass
