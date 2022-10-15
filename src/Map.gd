@@ -35,7 +35,7 @@ func add_station():
 func add_obstacle():
 	var obs = obstacle_class.instance()
 	var obj = new_object_class.instance()
-	var pos = obs.get_new_position()# Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
+	var pos = obs.get_new_position()
 	obj.position = pos
 	add_child(obj)
 

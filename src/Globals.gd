@@ -43,7 +43,7 @@ func get_next_priority():
 
 
 func get_random_colour_number():
-	return rnd.randi_range(0, MAX_STATION_COLOURS-1)
+	return rnd.randi_range(1, MAX_STATION_COLOURS-1) # Skip 0 as it's unique!
 	
 
 func get_texture(col:int):
@@ -58,10 +58,11 @@ func get_texture(col:int):
 
 
 func get_next_station_colour_number() -> int:
+	var next = next_station_colour
 	next_station_colour += 1
 	if next_station_colour >= MAX_STATION_COLOURS:
-		next_station_colour = 0
-	return next_station_colour
+		next_station_colour = 1 # Skip 0 and it's unique!
+	return next
 	
 	
 func get_next_track_colour() -> Color:

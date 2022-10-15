@@ -36,12 +36,6 @@ func add_passenger():
 	pass
 
 
-#func clear_passengers():
-#	passengers.clear()
-#	update_passenger_list()
-#	pass
-	
-
 func update_passenger_list():
 	$PassengerList.update()
 	pass
@@ -49,9 +43,9 @@ func update_passenger_list():
 
 func _on_FlashTimer_timeout():
 	if passengers.size() < Globals.NUM_PASSENGERS_WARNING:
-		visible = true
+		$PassengerList.visible = true
 	else:
-		visible = not visible
+		$PassengerList.visible = not $PassengerList.visible
 	pass 
 
 
@@ -59,8 +53,8 @@ func get_new_position():
 	var mx = Globals.MAP_WIDTH / 2
 	var my = Globals.MAP_HEIGHT / 2
 	var rad = Globals.num_stations * 75
-	if rad >= mx-50:
-		rad = mx-50
+	if rad >= my-50:
+		rad = my-50
 	var pos = Vector2(Globals.rnd.randi_range(mx-rad, mx+rad), Globals.rnd.randi_range(my-rad, my+rad))
 	print("New station at " + str(pos))
 	return pos

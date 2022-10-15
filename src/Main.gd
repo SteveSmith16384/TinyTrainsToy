@@ -57,6 +57,13 @@ func _input(event):
 				$Map.position += offset
 		pass
 		prev_mouse_pos = event.position
+	elif event is InputEventKey:
+		var key:InputEventKey = event
+		if key.pressed:
+			if key.scancode == KEY_DELETE:
+				if selected_junction != null:
+					selected_junction.get_parent().delete_junction(selected_junction)
+					selected_junction = null
 	pass
 
 
