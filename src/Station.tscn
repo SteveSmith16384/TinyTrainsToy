@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Sprites/cyan_circle.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 30.0
+radius = 31.1448
 
 [node name="Station" type="Node2D" groups=["stations"]]
 script = ExtResource( 1 )

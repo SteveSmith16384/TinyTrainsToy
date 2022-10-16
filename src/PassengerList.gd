@@ -8,7 +8,7 @@ func update():
 		
 	for p in pas:
 		var tex = TextureRect.new()
-		tex.texture = Globals.get_texture(p)
+		tex.texture = Globals.get_station_texture(p)
 		$HBoxContainer.add_child(tex)
 	pass
 	

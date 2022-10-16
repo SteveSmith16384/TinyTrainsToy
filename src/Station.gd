@@ -8,12 +8,8 @@ var colour : int
 onready var time = OS.get_ticks_msec()
 
 func _ready():
-	if Globals.num_stations <= Globals.MAX_STATION_COLOURS:
-		colour = Globals.get_next_station_colour_number()
-	else:
-		colour = Globals.rnd.randi_range(1, Globals.MAX_STATION_COLOURS-1) # Skip 0 as it's unique!
-		
-	$Sprite.texture = Globals.get_texture(colour)
+	colour = Globals.get_next_station_colour_number()
+	$Sprite.texture = Globals.get_station_texture(colour)
 	add_passenger()
 	pass
 

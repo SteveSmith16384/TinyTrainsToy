@@ -15,13 +15,14 @@ func _process(_delta):
 			count = 0
 			clear = true
 			#put in new position!
-			position = payload.get_new_position() #Vector2(Globals.rnd.randi_range(20, Globals.MAP_WIDTH), Globals.rnd.randi_range(20, Globals.MAP_HEIGHT))
+			position = payload.get_new_position()
 	pass
 	
 
 func create_object():
 	var map = self.get_parent()
 	var obj = self.payload
+	obj.visible = true
 	self.remove_child(obj)
 	map.add_child(obj)
 	obj.position = self.position

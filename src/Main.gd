@@ -76,9 +76,12 @@ func _input(event):
 				if selected_junction != null:
 					selected_junction.get_parent().delete_junction(selected_junction)
 					selected_junction = null
-			if key.scancode == KEY_I:
+			elif key.scancode == KEY_I:
 				if selected_junction != null:
 					selected_junction.get_parent().insert_junction(selected_junction)
+			elif key.scancode == KEY_ESCAPE:
+				var _unused = get_tree().change_scene("res://SelectGameMode.tscn")
+		return
 	pass
 
 
@@ -99,7 +102,7 @@ func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 	var sel = get_selection_at(screen_position)
 	if sel == null:
 		if selected_junction == null:
-			if Globals.num_tracks <= Globals.MAX_TRACKS:
+			if Globals.num_tracks < Globals.MAX_TRACKS:
 				# start new line
 				var train_line = train_line_class.instance()
 				train_line.curve = Curve2D.new()

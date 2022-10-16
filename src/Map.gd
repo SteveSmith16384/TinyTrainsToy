@@ -8,8 +8,9 @@ onready var main = get_tree().get_root().get_node("Main")
 
 
 func _ready():
-	for i in Globals.MAX_STATION_COLOURS:
+	for i in Globals.NUM_START_STATIONS:
 		add_station()
+		
 	for i in 9:
 		add_obstacle()
 	pass

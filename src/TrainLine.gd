@@ -62,6 +62,8 @@ func insert_junction(orig_junc):
 
 	var new_junc = junction_class.instance()
 	new_junc.position = orig_junc.position
+	new_junc.position.x += 20
+	new_junc.position.y += 20
 	new_junc.get_node("TrainSprite").queue_free()
 	self.add_child(new_junc)
 	junctions.insert(idx+1, new_junc)
