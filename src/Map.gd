@@ -8,11 +8,13 @@ onready var main = get_tree().get_root().get_node("Main")
 
 
 func _ready():
+	if Globals.game_mode != Globals.GameMode.Simple:
+		for i in 9:
+			add_obstacle()
+
 	for i in Globals.NUM_START_STATIONS:
 		add_station()
 		
-	for i in 9:
-		add_obstacle()
 	pass
 	
 
@@ -21,7 +23,12 @@ func _on_NewStationTimer_timeout():
 		return
 		
 	add_station()
-	$NewStationTimer.wait_time += 4
+	if Globals.game_mode == Globals.GameMode.Megalopolis:
+		add_station()
+	elif Globals.game_mode == Globals.GameMode.Earthquake:
+		add_obstacle()
+		
+	#$NewStationTimer.wait_time += 2#4
 	pass
 
 
@@ -30,6 +37,7 @@ func add_station():
 	var station = station_class.instance()
 	
 	var obj = new_object_class.instance()
+	obj.visible = false
 	
 	obj.position = station.get_new_position()
 	obj.add_child(station)
@@ -41,8 +49,8 @@ func add_station():
 
 func add_obstacle():
 	var obs = obstacle_class.instance()
-	obs.visible = false
 	var obj = new_object_class.instance()
+	obj.visible = false
 	var pos = obs.get_new_position()
 	obj.position = pos
 	add_child(obj)

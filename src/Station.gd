@@ -49,11 +49,14 @@ func _on_FlashTimer_timeout():
 
 
 func get_new_position():
-	var mx = Globals.MAP_WIDTH / 2
-	var my = Globals.MAP_HEIGHT / 2
-	var rad = Globals.num_stations * 75
-	if rad >= my-50:
-		rad = my-50
-	var pos = Vector2(Globals.rnd.randi_range(mx-rad, mx+rad), Globals.rnd.randi_range(my-rad, my+rad))
-	#print("New station at " + str(pos))
-	return pos
+	if Globals.game_mode == Globals.GameMode.Megalopolis or Globals.game_mode == Globals.GameMode.Earthquake:
+		return Vector2(Globals.rnd.randi_range(100, Globals.MAP_WIDTH-100), Globals.rnd.randi_range(100, Globals.MAP_HEIGHT-100))
+	else:
+		var mx = Globals.MAP_WIDTH / 2
+		var my = Globals.MAP_HEIGHT / 2
+		var rad = Globals.num_stations * 75
+		if rad >= my-50:
+			rad = my-50
+		var pos = Vector2(Globals.rnd.randi_range(mx-rad, mx+rad), Globals.rnd.randi_range(my-rad, my+rad))
+		print("New station at " + str(pos))
+		return pos

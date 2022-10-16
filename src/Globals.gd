@@ -1,7 +1,7 @@
 extends Node
 
 const VERSION = "1.0"
-const RELEASE_MODE = false
+const RELEASE_MODE = true
 
 const SHOW_FPS = false and !RELEASE_MODE
 
@@ -18,7 +18,7 @@ var UNIQUE_STATION = true
 var MAX_TRACKS = -1 #4
 var MAX_STATION_COLOURS = -1 #4
 var NUM_START_STATIONS = -1
-
+var START_MONEY = 100
 
 # Vars
 var next_pri : int = 0
@@ -26,6 +26,10 @@ var next_station_colour :int = 0
 var next_track_colour :int = -1 # -1 since we add one straight away
 var num_stations:int = 0
 var num_tracks:int = 0
+var game_mode: int
+# If you add any, add them to reset()
+
+enum GameMode {Simple, Megalopolis, Earthquake, Other}
 
 var rnd : RandomNumberGenerator
 
@@ -33,11 +37,23 @@ func _ready():
 	if RELEASE_MODE:
 		OS.window_fullscreen = true
 
+	#reset()
+	
 	rnd = RandomNumberGenerator.new()
 	rnd.randomize()
 	pass
 	
 
+func reset():
+	next_pri = 0
+	next_station_colour = 0
+	next_track_colour = -1
+	num_stations = 0
+	num_tracks = 0
+	
+	pass
+	
+	
 func gridify_pos(pos : Vector2):
 	var x : int = pos.x / float(SQ_SIZE)
 	x = x * SQ_SIZE

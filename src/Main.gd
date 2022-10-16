@@ -9,12 +9,13 @@ var prev_mouse_pos : Vector2
 var prev_button_mask: int = 0
 var mouse_over_icons = false
 var game_is_over = false
-var money: float = 100.0
+var money: float
 var time_secs: int = 0
 var bought_train = false
 
 
 func _ready():
+	money = Globals.START_MONEY
 	update_tracks_left()
 	$HUD.set_money(int(money))
 	pass
@@ -79,8 +80,8 @@ func _input(event):
 			elif key.scancode == KEY_I:
 				if selected_junction != null:
 					selected_junction.get_parent().insert_junction(selected_junction)
-			elif key.scancode == KEY_ESCAPE:
-				var _unused = get_tree().change_scene("res://SelectGameMode.tscn")
+#			elif key.scancode == KEY_ESCAPE:
+#				var _unused = get_tree().change_scene("res://SelectGameMode.tscn")
 		return
 	pass
 
@@ -122,6 +123,9 @@ func check_intersection(screen_position : Vector2, map_position: Vector2 ):
 	
 	
 func _process(_delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		var _unused = get_tree().change_scene("res://SelectGameMode.tscn")
+
 	update()
 	pass
 	
@@ -137,8 +141,11 @@ func _draw():
 	
 	
 func buy_train(free:bool):
+	if game_is_over:
+		return
+		
 	if not free and money < 100:
-		$HUD.set_status_text("Not enough money!")
+		set_status_text("Not enough money!")
 		return
 		
 	if selected_junction != null:
@@ -154,6 +161,7 @@ func buy_train(free:bool):
 
 
 func game_over():
+	print("Game over")
 	$HUD.set_status_text("GAME OVER!")
 	$HUD.set_money(money)
 	game_is_over = true

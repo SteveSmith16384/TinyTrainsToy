@@ -23,7 +23,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
 margin_right = 616.0
-margin_bottom = 292.0
+margin_bottom = 366.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -55,7 +55,15 @@ margin_bottom = 292.0
 theme = ExtResource( 2 )
 text = "Megalopolis Mode"
 
+[node name="EarthquakeMode" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+margin_top = 296.0
+margin_right = 616.0
+margin_bottom = 366.0
+theme = ExtResource( 2 )
+text = "Earthquake Mode"
+
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/SimpleMode" to="." method="_on_SimpleMode_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/SingleTrack" to="." method="_on_SingleTrack_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/UniqueStation" to="." method="_on_UniqueStation_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/MegalopolisMode" to="." method="_on_MegalopolisMode_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/EarthquakeMode" to="." method="_on_EarthquakeMode_pressed"]

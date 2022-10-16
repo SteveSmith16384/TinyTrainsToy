@@ -5,7 +5,7 @@ It's a bit like Mini Metro.
 Gameplay Video: https://www.youtube.com/watch?v=fh2r42VYcTQ
 
 
-## OVEVIEW
+## OVERVIEW
 * Build tracks to connect stations and take passengers.
 * The coloured dots against stations and trains shows you how many passengers there are and where they want to go.
 * Passengers will automatically embark and alight if the train touches a station.
