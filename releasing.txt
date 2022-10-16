@@ -1,0 +1,7 @@
+Full screen!
+Start with IntroScene
+Check all debugging is turned off
+Check for todos
+Inc version num
+Copy in new readme
+
