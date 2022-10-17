@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
 [ext_resource path="res://Assets/fonts/zx_spectrum-7.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Themes/IntroButtonTheme.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/Sprites/game_over.png" type="Texture" id=4]
+[ext_resource path="res://Themes/LabelTheme.tres" type="Theme" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -13,6 +14,19 @@ font_data = ExtResource( 2 )
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
 
+[node name="InstructionLabel" type="Label" parent="."]
+margin_top = 218.0
+margin_right = 740.0
+margin_bottom = 282.0
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Here"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -21,8 +35,8 @@ __meta__ = {
 }
 
 [node name="FullScreen" type="Button" parent="VBoxContainer"]
-margin_right = 287.0
-margin_bottom = 70.0
+margin_right = 360.0
+margin_bottom = 53.0
 theme = ExtResource( 3 )
 text = "Full-Screen"
 __meta__ = {
@@ -30,9 +44,9 @@ __meta__ = {
 }
 
 [node name="BuyTrainButton" type="Button" parent="VBoxContainer"]
-margin_top = 74.0
-margin_right = 287.0
-margin_bottom = 144.0
+margin_top = 57.0
+margin_right = 360.0
+margin_bottom = 110.0
 theme = ExtResource( 3 )
 text = "BUY TRAIN"
 
@@ -46,12 +60,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer"]
-margin_left = 847.0
-margin_right = 1073.0
-margin_bottom = 64.0
+margin_left = 874.0
+margin_top = 18.0
+margin_right = 1046.0
+margin_bottom = 46.0
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "TEXT HERE"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
@@ -64,37 +79,37 @@ __meta__ = {
 
 [node name="Time" type="Label" parent="VBoxContainer2"]
 margin_right = 740.0
-margin_bottom = 64.0
+margin_bottom = 28.0
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "TIME:"
 
 [node name="Score" type="Label" parent="VBoxContainer2"]
-margin_top = 68.0
+margin_top = 32.0
 margin_right = 740.0
-margin_bottom = 132.0
+margin_bottom = 60.0
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "Score:"
 
 [node name="TracksLeft" type="Label" parent="VBoxContainer2"]
-margin_top = 136.0
+margin_top = 64.0
 margin_right = 740.0
-margin_bottom = 200.0
+margin_bottom = 92.0
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "Score:"
 
 [node name="TimeToNextStation" type="Label" parent="VBoxContainer2"]
-margin_top = 204.0
+margin_top = 96.0
 margin_right = 740.0
-margin_bottom = 268.0
+margin_bottom = 124.0
+theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
-custom_fonts/font = SubResource( 1 )
 text = "Score:"
 
 [node name="GameOver" type="CenterContainer" parent="."]

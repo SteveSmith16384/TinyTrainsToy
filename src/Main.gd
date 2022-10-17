@@ -35,6 +35,7 @@ func _input(event):
 				if sel != null:
 					selected_junction = sel
 					dragging = true
+#				$HUD.next_instruction()
 			elif event.button_index == BUTTON_WHEEL_UP:
 				pass
 			elif event.button_index == BUTTON_WHEEL_DOWN:
@@ -47,6 +48,7 @@ func _input(event):
 						Globals.num_tracks -= 1
 						update_tracks_left()
 				selected_junction = null
+				$HUD.next_instruction()
 			pass
 			prev_button_mask = ev.button_mask
 		elif ev.button_index == prev_button_mask: # Released
@@ -77,13 +79,16 @@ func _input(event):
 				if selected_junction != null:
 					selected_junction.get_parent().delete_junction(selected_junction)
 					selected_junction = null
+				#$HUD.next_instruction()
 			elif key.scancode == KEY_I:
 				if selected_junction != null:
 					selected_junction.get_parent().insert_junction(selected_junction)
+				#$HUD.next_instruction()
 			elif key.scancode == KEY_F1:
 				OS.window_fullscreen = !OS.window_fullscreen
 			elif key.scancode == KEY_J:
 				add_junctions($Map.get_local_mouse_position())
+				$HUD.next_instruction()
 		return
 	pass
 
