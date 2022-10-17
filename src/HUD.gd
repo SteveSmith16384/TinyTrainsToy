@@ -4,6 +4,7 @@ onready var main = get_tree().get_root().get_node("Main")
 
 func _ready():
 	self.set_status_text("HELLO, NEW CONTROLLER!")
+	$GameOver.visible = false
 	pass
 	
 	
@@ -49,4 +50,9 @@ func _on_BuyTrainButton_pressed():
 
 func _on_FullScreen_pressed():
 	OS.window_fullscreen = not OS.window_fullscreen
+	pass
+
+
+func show_game_over():
+	$GameOver.visible = true
 	pass

@@ -100,11 +100,11 @@ func get_selection_at(screen_position:Vector2):
 				parent.dir = parent.dir * -1
 	pass
 	
-		
-#func check_intersection(screen_position : Vector2, map_position: Vector2 ):
-#	var sel = get_selection_at(screen_position)
-#	if sel == null:
+
 func add_junctions(map_position:Vector2):
+	if game_is_over:
+		return
+		
 	if selected_junction == null:
 		if Globals.num_tracks < Globals.MAX_TRACKS:
 			# start new line
@@ -169,6 +169,7 @@ func game_over():
 		
 	print("Game over")
 	$HUD.set_status_text("GAME OVER!")
+	$HUD.show_game_over()
 	$HUD.set_money(money)
 	game_is_over = true
 	pass

@@ -1,7 +1,7 @@
 extends Node
 
 const VERSION = "1.2"
-const RELEASE_MODE = true
+const RELEASE_MODE = false
 
 const SHOW_FPS = false and !RELEASE_MODE
 
@@ -29,7 +29,7 @@ var num_tracks:int = 0
 var game_mode: int
 # If you add any, add them to reset()
 
-enum GameMode {Simple, Megalopolis, Earthquake, ChangingStations, Free, Other}
+enum GameMode {Simple, Normal, Megalopolis, Earthquake, ChangingStations, Free, Other}
 
 var rnd : RandomNumberGenerator
 

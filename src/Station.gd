@@ -5,8 +5,6 @@ onready var main = get_tree().get_root().get_node("Main")
 var passengers = []
 var colour : int
 
-#onready var time = OS.get_ticks_msec()
-
 func _ready():
 	if Globals.game_mode != Globals.GameMode.ChangingStations:
 		$ChangeColourTimer.queue_free()
@@ -54,6 +52,9 @@ func _on_FlashTimer_timeout():
 
 
 func get_new_position():
+#	if Globals.RELEASE_MODE == false:
+#		return Vector2(400, 400)
+		
 	if Globals.game_mode == Globals.GameMode.Megalopolis or Globals.game_mode == Globals.GameMode.Earthquake:
 		return Vector2(Globals.rnd.randi_range(100, Globals.MAP_WIDTH-100), Globals.rnd.randi_range(100, Globals.MAP_HEIGHT-100))
 	else:
@@ -63,7 +64,7 @@ func get_new_position():
 		if rad >= my-50:
 			rad = my-50
 		var pos = Vector2(Globals.rnd.randi_range(mx-rad, mx+rad), Globals.rnd.randi_range(my-rad, my+rad))
-		print("New station at " + str(pos))
+		#print("New station at " + str(pos))
 		return pos
 
 
