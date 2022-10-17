@@ -138,8 +138,8 @@ func _draw():
 		return
 	if mouse_pos != null and selected_junction != null and mouse_over_icons == false:
 		var train_line = selected_junction.get_parent()
-		var end = (train_line.get_end_pos() + $Map.position) * $Map.scale
-		draw_line(end, mouse_pos, Color.gray, 4)
+		var end = (train_line.get_end_pos() + $Map.position)# * $Map.scale
+		draw_line(end, mouse_pos, Color.black, 7)
 	pass
 	
 	
