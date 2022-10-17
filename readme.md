@@ -25,6 +25,7 @@ Gameplay Video: https://www.youtube.com/watch?v=fh2r42VYcTQ
 * Del to delete the selected junction
 * I to insert a junction after the selected junction
 * Right-click to deselect a junction.
+* F1 to toggle Full-Screen
 
 
 ## FAQ

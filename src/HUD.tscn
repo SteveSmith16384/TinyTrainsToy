@@ -19,9 +19,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuyTrainButton" type="Button" parent="VBoxContainer"]
-margin_right = 238.0
+[node name="FullScreen" type="Button" parent="VBoxContainer"]
+margin_right = 287.0
 margin_bottom = 70.0
+theme = ExtResource( 3 )
+text = "Full-Screen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuyTrainButton" type="Button" parent="VBoxContainer"]
+margin_top = 74.0
+margin_right = 287.0
+margin_bottom = 144.0
 theme = ExtResource( 3 )
 text = "BUY TRAIN"
 
@@ -44,7 +54,7 @@ custom_fonts/font = SubResource( 1 )
 text = "TEXT HERE"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-margin_top = 112.0
+margin_top = 150.0
 margin_right = 740.0
 margin_bottom = 318.0
 __meta__ = {
@@ -86,6 +96,9 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "Score:"
 
+[connection signal="mouse_entered" from="VBoxContainer/FullScreen" to="." method="_on_BuyTrainButton_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/FullScreen" to="." method="_on_BuyTrainButton_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/FullScreen" to="." method="_on_FullScreen_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_pressed"]

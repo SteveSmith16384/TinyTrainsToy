@@ -80,8 +80,8 @@ func _input(event):
 			elif key.scancode == KEY_I:
 				if selected_junction != null:
 					selected_junction.get_parent().insert_junction(selected_junction)
-#			elif key.scancode == KEY_ESCAPE:
-#				var _unused = get_tree().change_scene("res://SelectGameMode.tscn")
+			elif key.scancode == KEY_F1:
+				OS.window_fullscreen = !OS.window_fullscreen
 		return
 	pass
 

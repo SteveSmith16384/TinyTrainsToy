@@ -45,3 +45,8 @@ func _on_BuyTrainButton_mouse_exited():
 func _on_BuyTrainButton_pressed():
 	main.buy_train(false)
 	pass
+
+
+func _on_FullScreen_pressed():
+	OS.window_fullscreen = not OS.window_fullscreen
+	pass
