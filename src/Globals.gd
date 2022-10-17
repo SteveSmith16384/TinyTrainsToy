@@ -1,12 +1,12 @@
 extends Node
 
-const VERSION = "1.1"
+const VERSION = "1.2"
 const RELEASE_MODE = true
 
 const SHOW_FPS = false and !RELEASE_MODE
 
-const MAP_WIDTH = 1920#-200
-const MAP_HEIGHT = 1080#-200
+const MAP_WIDTH = 1920
+const MAP_HEIGHT = 1080
 const SQ_SIZE = 10
 const MAX_TRACK_COLOURS = 5
 const NUM_PASSENGERS_WARNING = 6
@@ -37,8 +37,6 @@ func _ready():
 	if RELEASE_MODE:
 		OS.window_fullscreen = true
 
-	#reset()
-	
 	rnd = RandomNumberGenerator.new()
 	rnd.randomize()
 	pass
@@ -50,7 +48,6 @@ func reset():
 	next_track_colour = -1
 	num_stations = 0
 	num_tracks = 0
-	
 	pass
 	
 	

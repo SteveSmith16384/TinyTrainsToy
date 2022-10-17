@@ -23,9 +23,9 @@ func _on_NewStationTimer_timeout():
 		return
 		
 	add_station()
-	if Globals.game_mode == Globals.GameMode.Megalopolis:
-		add_station()
-	elif Globals.game_mode == Globals.GameMode.Earthquake:
+#	if Globals.game_mode == Globals.GameMode.Megalopolis:
+#		add_station()
+	if Globals.game_mode == Globals.GameMode.Earthquake:
 		add_obstacle()
 		
 	#$NewStationTimer.wait_time += 2#4

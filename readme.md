@@ -1,4 +1,4 @@
-# TINY TRAINS TOY
+# TINY TRAINS
 
 It's a bit like Mini Metro.
 
