@@ -31,7 +31,7 @@ func _ready():
 	pass
 	
 	
-func _process(delta):
+func _process(_delta):
 	$InstructionLabel.rect_position = main.get_local_mouse_position()
 	pass
 	
