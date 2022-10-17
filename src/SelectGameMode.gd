@@ -20,7 +20,7 @@ func _on_SimpleMode_pressed():
 
 
 func _on_NormalMode_pressed():
-	Globals.game_mode = Globals.GameMode.Other
+	Globals.game_mode = Globals.GameMode.Normal
 	
 	Globals.UNIQUE_STATION = false
 	Globals.MAX_TRACKS = 4
@@ -82,8 +82,29 @@ func _on_EarthquakeMode_pressed():
 	pass
 
 
-
-
 func _on_Full_Screen_pressed():
 	OS.window_fullscreen = !OS.window_fullscreen
 	pass
+
+
+func _on_ChangingStationsMode_pressed():
+	Globals.game_mode = Globals.GameMode.ChangingStations
+	
+	Globals.UNIQUE_STATION = false
+	Globals.MAX_TRACKS = 4
+	Globals.NUM_START_STATIONS = 3
+	Globals.MAX_STATION_COLOURS = 4
+	start()
+	pass
+
+
+func _on_FreeMode_pressed():
+	Globals.game_mode = Globals.GameMode.Free
+	
+	Globals.UNIQUE_STATION = false
+	Globals.MAX_TRACKS = 4
+	Globals.NUM_START_STATIONS = 3
+	Globals.MAX_STATION_COLOURS = 4
+	start()
+	pass
+	

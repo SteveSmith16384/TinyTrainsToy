@@ -35,5 +35,9 @@ position = Vector2( 21, -19 )
 wait_time = 0.5
 autostart = true
 
+[node name="ChangeColourTimer" type="Timer" parent="."]
+wait_time = 20.0
+
 [connection signal="timeout" from="NewPassengerTimer" to="." method="_on_NewPassengerTimer_timeout"]
 [connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]
+[connection signal="timeout" from="ChangeColourTimer" to="." method="_on_ChangeColourTimer_timeout"]

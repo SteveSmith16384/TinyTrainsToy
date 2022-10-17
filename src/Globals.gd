@@ -29,7 +29,7 @@ var num_tracks:int = 0
 var game_mode: int
 # If you add any, add them to reset()
 
-enum GameMode {Simple, Megalopolis, Earthquake, Other}
+enum GameMode {Simple, Megalopolis, Earthquake, ChangingStations, Free, Other}
 
 var rnd : RandomNumberGenerator
 

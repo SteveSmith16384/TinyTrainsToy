@@ -5,9 +5,14 @@ onready var main = get_tree().get_root().get_node("Main")
 var passengers = []
 var colour : int
 
-onready var time = OS.get_ticks_msec()
+#onready var time = OS.get_ticks_msec()
 
 func _ready():
+	if Globals.game_mode != Globals.GameMode.ChangingStations:
+		$ChangeColourTimer.queue_free()
+	else:
+		$ChangeColourTimer.start()
+		
 	colour = Globals.get_next_station_colour_number()
 	$Sprite.texture = Globals.get_station_texture(colour)
 	add_passenger()
@@ -60,3 +65,13 @@ func get_new_position():
 		var pos = Vector2(Globals.rnd.randi_range(mx-rad, mx+rad), Globals.rnd.randi_range(my-rad, my+rad))
 		print("New station at " + str(pos))
 		return pos
+
+
+func _on_ChangeColourTimer_timeout():
+	if Globals.rnd.randi_range(0, 1) == 1:
+		return
+		
+	colour = Globals.get_next_station_colour_number()
+	$Sprite.texture = Globals.get_station_texture(colour)
+	
+	pass

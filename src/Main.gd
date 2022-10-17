@@ -164,6 +164,9 @@ func buy_train(free:bool):
 
 
 func game_over():
+	if Globals.game_mode == Globals.GameMode.Free:
+		return
+		
 	print("Game over")
 	$HUD.set_status_text("GAME OVER!")
 	$HUD.set_money(money)
