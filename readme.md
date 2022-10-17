@@ -20,7 +20,7 @@ Gameplay Video: https://www.youtube.com/watch?v=fh2r42VYcTQ
 
 
 ## CONTROLS
-* Click mouse to build a new junction.  If you've got a junction currently selected, it will connect them with track, otherwise it will start a new track.
+* Press J to build a new junction where the mouse is pointing.  If you've got a junction currently selected, it will connect them with track, otherwise it will start a new track.
 * Drag junctions to move them and the connecting track
 * Del to delete the selected junction
 * I to insert a junction after the selected junction

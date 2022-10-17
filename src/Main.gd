@@ -51,8 +51,8 @@ func _input(event):
 			prev_button_mask = ev.button_mask
 		elif ev.button_index == prev_button_mask: # Released
 			if prev_button_mask == 1:
-				var adj_pos = $Map.get_local_mouse_position()
-				check_intersection(ev.position, adj_pos)
+#				var adj_pos = $Map.get_local_mouse_position()
+#				check_intersection(ev.position, adj_pos)
 				pass
 			else:
 				selected_junction = null
@@ -82,6 +82,8 @@ func _input(event):
 					selected_junction.get_parent().insert_junction(selected_junction)
 			elif key.scancode == KEY_F1:
 				OS.window_fullscreen = !OS.window_fullscreen
+			elif key.scancode == KEY_J:
+				add_junctions($Map.get_local_mouse_position())
 		return
 	pass
 
@@ -99,26 +101,27 @@ func get_selection_at(screen_position:Vector2):
 	pass
 	
 		
-func check_intersection(screen_position : Vector2, map_position: Vector2 ):
-	var sel = get_selection_at(screen_position)
-	if sel == null:
-		if selected_junction == null:
-			if Globals.num_tracks < Globals.MAX_TRACKS:
-				# start new line
-				var train_line = train_line_class.instance()
-				train_line.curve = Curve2D.new()
-				selected_junction = train_line.add_junction(map_position)
-				$Map.add_child(train_line)
-				Globals.num_tracks += 1
-				update_tracks_left()
-			else:
-				set_status_text("No tracks left!")
-		else:
-			# Continue existing line
-			var train_line = selected_junction.get_parent()
+#func check_intersection(screen_position : Vector2, map_position: Vector2 ):
+#	var sel = get_selection_at(screen_position)
+#	if sel == null:
+func add_junctions(map_position:Vector2):
+	if selected_junction == null:
+		if Globals.num_tracks < Globals.MAX_TRACKS:
+			# start new line
+			var train_line = train_line_class.instance()
+			train_line.curve = Curve2D.new()
 			selected_junction = train_line.add_junction(map_position)
-			if train_line.curve.get_point_count() == 2:
-				buy_train(true)
+			$Map.add_child(train_line)
+			Globals.num_tracks += 1
+			update_tracks_left()
+		else:
+			set_status_text("No tracks left!")
+	else:
+		# Continue existing line
+		var train_line = selected_junction.get_parent()
+		selected_junction = train_line.add_junction(map_position)
+		if train_line.curve.get_point_count() == 2:
+			buy_train(true)
 	pass
 	
 	
