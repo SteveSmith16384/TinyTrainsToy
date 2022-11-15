@@ -88,9 +88,9 @@ func delete_junction(junc):
 
 	update_junction_icons()
 	
+	if junc == main.selected_junction:
+		main.selected_junction = null
+		
 	update()
-	
-#	if curve.get_point_count() == 0:
-#		self.queue_free()
 	pass
 	

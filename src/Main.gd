@@ -21,7 +21,50 @@ func _ready():
 	pass
 	
 	
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		dragging = false
+		var ev: InputEventMouseButton = event
+		if ev.pressed:
+			if ev.button_mask == 1:
+				var sel = get_selection_at(ev.position)
+				if sel != null:
+					selected_junction = sel
+					dragging = true
+					$JunctionMenu.visible = true
+					$JunctionMenu.rect_position = selected_junction.position
+				else:
+					add_junctions($Map.get_local_mouse_position())
+					$HUD.next_instruction()
+			else:
+				if selected_junction != null:
+					if selected_junction.get_parent().curve.get_point_count() <= 1:
+						# Remove track
+						selected_junction.get_parent().queue_free()
+						Globals.num_tracks -= 1
+						update_tracks_left()
+				selected_junction = null
+				$JunctionMenu.visible = false
+				$HUD.next_instruction()
+	elif event is InputEventMouseMotion:
+		#print("Mouse Motion at: ", event.position)
+		mouse_pos = event.position
+		if dragging:
+			if selected_junction != null:
+				$JunctionMenu.visible = false
+				selected_junction.position = $Map.get_local_mouse_position()
+				selected_junction.set_curve_point()
+			elif prev_button_mask == 2:
+				var offset = event.position - prev_mouse_pos
+				$Map.position += offset
+		pass
+		prev_mouse_pos = event.position
+	pass
+	
+	
 func _input(event):
+	return
+	
 	if mouse_over_icons:
 		return
 		
@@ -34,8 +77,11 @@ func _input(event):
 				var sel = get_selection_at(ev.position)
 				if sel != null:
 					selected_junction = sel
+					#selected_junction.get_node("JunctionMenu").popup()
 					dragging = true
-#				$HUD.next_instruction()
+				else:
+					add_junctions($Map.get_local_mouse_position())
+					$HUD.next_instruction()
 			elif event.button_index == BUTTON_WHEEL_UP:
 				pass
 			elif event.button_index == BUTTON_WHEEL_DOWN:

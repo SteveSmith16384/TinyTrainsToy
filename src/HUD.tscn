@@ -30,9 +30,6 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="FullScreen" type="Button" parent="VBoxContainer"]
 margin_right = 360.0
@@ -42,13 +39,6 @@ text = "Full-Screen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="BuyTrainButton" type="Button" parent="VBoxContainer"]
-margin_top = 57.0
-margin_right = 360.0
-margin_bottom = 110.0
-theme = ExtResource( 3 )
-text = "BUY TRAIN"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_top = 1.0
@@ -131,6 +121,3 @@ texture = ExtResource( 4 )
 [connection signal="mouse_entered" from="VBoxContainer/FullScreen" to="." method="_on_BuyTrainButton_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/FullScreen" to="." method="_on_BuyTrainButton_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/FullScreen" to="." method="_on_FullScreen_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_entered"]
-[connection signal="mouse_exited" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_mouse_exited"]
-[connection signal="pressed" from="VBoxContainer/BuyTrainButton" to="." method="_on_BuyTrainButton_pressed"]

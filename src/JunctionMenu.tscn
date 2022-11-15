@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Themes/LabelTheme.tres" type="Theme" id=1]
+[ext_resource path="res://JunctionMenu.gd" type="Script" id=2]
+
+[node name="JunctionMenu" type="VBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+script = ExtResource( 2 )
+
+[node name="SplitJunction" type="Button" parent="."]
+margin_right = 174.0
+margin_bottom = 34.0
+theme = ExtResource( 1 )
+text = "Split"
+
+[node name="RemoveJunction" type="Button" parent="."]
+margin_top = 38.0
+margin_right = 174.0
+margin_bottom = 72.0
+theme = ExtResource( 1 )
+text = "Remove"
+
+[node name="BuyTrain" type="Button" parent="."]
+margin_top = 76.0
+margin_right = 174.0
+margin_bottom = 110.0
+theme = ExtResource( 1 )
+text = "Buy Train"
+
+[connection signal="pressed" from="SplitJunction" to="." method="_on_SplitJunction_pressed"]
+[connection signal="pressed" from="RemoveJunction" to="." method="_on_RemoveJunction_pressed"]
+[connection signal="pressed" from="BuyTrain" to="." method="_on_BuyTrain_pressed"]

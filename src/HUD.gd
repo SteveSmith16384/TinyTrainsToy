@@ -70,21 +70,6 @@ func set_tracks_left(s: int):
 	pass
 
 
-func _on_BuyTrainButton_mouse_entered():
-	main.mouse_over_icons = true
-	pass
-
-
-func _on_BuyTrainButton_mouse_exited():
-	main.mouse_over_icons = false
-	pass
-
-
-func _on_BuyTrainButton_pressed():
-	main.buy_train(false)
-	pass
-
-
 func _on_FullScreen_pressed():
 	OS.window_fullscreen = not OS.window_fullscreen
 	pass
