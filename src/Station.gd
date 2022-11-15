@@ -52,9 +52,6 @@ func _on_FlashTimer_timeout():
 
 
 func get_new_position():
-#	if Globals.RELEASE_MODE == false:
-#		return Vector2(400, 400)
-		
 	if Globals.game_mode == Globals.GameMode.Megalopolis or Globals.game_mode == Globals.GameMode.Earthquake:
 		return Vector2(Globals.rnd.randi_range(100, Globals.MAP_WIDTH-100), Globals.rnd.randi_range(100, Globals.MAP_HEIGHT-100))
 	else:

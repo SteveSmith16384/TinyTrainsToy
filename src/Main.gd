@@ -33,6 +33,7 @@ func _unhandled_input(event):
 					dragging = true
 					$JunctionMenu.visible = true
 					$JunctionMenu.rect_position = selected_junction.position
+					$JunctionMenu.rect_position += Vector2(100, 0)
 				else:
 					add_junctions($Map.get_local_mouse_position())
 					$HUD.next_instruction()
@@ -46,7 +47,11 @@ func _unhandled_input(event):
 				selected_junction = null
 				$JunctionMenu.visible = false
 				$HUD.next_instruction()
-	elif event is InputEventMouseMotion:
+	pass
+	
+	
+func _input(event):
+	if event is InputEventMouseMotion:
 		#print("Mouse Motion at: ", event.position)
 		mouse_pos = event.position
 		if dragging:
@@ -59,12 +64,10 @@ func _unhandled_input(event):
 				$Map.position += offset
 		pass
 		prev_mouse_pos = event.position
-	pass
-	
-	
-func _input(event):
 	return
+
 	
+func _input_ORIGINAL(event):
 	if mouse_over_icons:
 		return
 		
