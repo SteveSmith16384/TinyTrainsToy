@@ -71,6 +71,7 @@ func insert_junction(orig_junc):
 	update_junction_icons()
 	
 	curve.add_point(orig_junc.position, Vector2(), Vector2(), idx+1)
+	new_junc.set_curve_point()
 	update()
 	
 	main.set_status_text("Junction inserted")

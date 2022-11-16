@@ -3,7 +3,8 @@ extends Node2D
 
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+		if OS.has_feature("web") == false:
+			get_tree().quit()
 		return
 	pass
 	

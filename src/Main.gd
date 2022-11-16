@@ -2,7 +2,9 @@ extends Node2D
 
 var train_line_class = preload("res://TrainLine.tscn")
 
+var potential_dragging = false
 var dragging = false
+var drag_start_pos := Vector2()
 var selected_junction = null
 var mouse_pos : Vector2
 var prev_mouse_pos : Vector2
@@ -23,6 +25,7 @@ func _ready():
 	
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
+		potential_dragging = false
 		dragging = false
 		var ev: InputEventMouseButton = event
 		if ev.pressed:
@@ -30,11 +33,19 @@ func _unhandled_input(event):
 				var sel = get_selection_at(ev.position)
 				if sel != null:
 					selected_junction = sel
-					dragging = true
+					potential_dragging = true
 					$JunctionMenu.visible = true
 					$JunctionMenu.rect_position = selected_junction.position
 					$JunctionMenu.rect_position += Vector2(100, 0)
+					if $JunctionMenu.rect_position.x + $JunctionMenu.rect_size.x > 1920:
+						var excess = ($JunctionMenu.rect_position.x + $JunctionMenu.rect_size.x) - 1920
+						$JunctionMenu.rect_position.x -= excess
+					if $JunctionMenu.rect_position.y + $JunctionMenu.rect_size.y > 1080:
+						var excess = ($JunctionMenu.rect_position.y + $JunctionMenu.rect_size.y) - 1080
+#						print(str(excess))
+						$JunctionMenu.rect_position.y -= excess
 				else:
+					$JunctionMenu.visible = false
 					add_junctions($Map.get_local_mouse_position())
 					$HUD.next_instruction()
 			else:
@@ -47,6 +58,10 @@ func _unhandled_input(event):
 				selected_junction = null
 				$JunctionMenu.visible = false
 				$HUD.next_instruction()
+	else:
+#		potential_dragging = false
+#		dragging = false
+		pass
 	pass
 	
 	
@@ -54,92 +69,21 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		#print("Mouse Motion at: ", event.position)
 		mouse_pos = event.position
-		if dragging:
-			if selected_junction != null:
-				$JunctionMenu.visible = false
-				selected_junction.position = $Map.get_local_mouse_position()
-				selected_junction.set_curve_point()
-			elif prev_button_mask == 2:
-				var offset = event.position - prev_mouse_pos
-				$Map.position += offset
+		if dragging or potential_dragging:
+			var length = self.drag_start_pos.distance_to(mouse_pos)
+			if dragging or length > 20:
+				dragging = true
+				drag_start_pos = mouse_pos
+				if selected_junction != null:
+					$JunctionMenu.visible = false
+					selected_junction.position = $Map.get_local_mouse_position()
+					selected_junction.set_curve_point()
+				elif prev_button_mask == 2:
+					var offset = event.position - prev_mouse_pos
+					$Map.position += offset
 		pass
 		prev_mouse_pos = event.position
 	return
-
-	
-func _input_ORIGINAL(event):
-	if mouse_over_icons:
-		return
-		
-	# Mouse in viewport coordinates.
-	if event is InputEventMouseButton:
-		dragging = false
-		var ev: InputEventMouseButton = event
-		if ev.pressed:
-			if ev.button_mask == 1:
-				var sel = get_selection_at(ev.position)
-				if sel != null:
-					selected_junction = sel
-					#selected_junction.get_node("JunctionMenu").popup()
-					dragging = true
-				else:
-					add_junctions($Map.get_local_mouse_position())
-					$HUD.next_instruction()
-			elif event.button_index == BUTTON_WHEEL_UP:
-				pass
-			elif event.button_index == BUTTON_WHEEL_DOWN:
-				pass
-			else:
-				if selected_junction != null:
-					if selected_junction.get_parent().curve.get_point_count() <= 1:
-						# Remove track
-						selected_junction.get_parent().queue_free()
-						Globals.num_tracks -= 1
-						update_tracks_left()
-				selected_junction = null
-				$HUD.next_instruction()
-			pass
-			prev_button_mask = ev.button_mask
-		elif ev.button_index == prev_button_mask: # Released
-			if prev_button_mask == 1:
-#				var adj_pos = $Map.get_local_mouse_position()
-#				check_intersection(ev.position, adj_pos)
-				pass
-			else:
-				selected_junction = null
-		pass
-		prev_mouse_pos = event.position
-	elif event is InputEventMouseMotion:
-		#print("Mouse Motion at: ", event.position)
-		mouse_pos = event.position
-		if dragging:
-			if selected_junction != null:
-				selected_junction.position = $Map.get_local_mouse_position()
-				selected_junction.set_curve_point()
-			elif prev_button_mask == 2:
-				var offset = event.position - prev_mouse_pos
-				$Map.position += offset
-		pass
-		prev_mouse_pos = event.position
-	elif event is InputEventKey:
-		var key:InputEventKey = event
-		if key.pressed:
-			if key.scancode == KEY_DELETE:
-				if selected_junction != null:
-					selected_junction.get_parent().delete_junction(selected_junction)
-					selected_junction = null
-				#$HUD.next_instruction()
-			elif key.scancode == KEY_I:
-				if selected_junction != null:
-					selected_junction.get_parent().insert_junction(selected_junction)
-				#$HUD.next_instruction()
-			elif key.scancode == KEY_F1:
-				OS.window_fullscreen = !OS.window_fullscreen
-			elif key.scancode == KEY_J:
-				add_junctions($Map.get_local_mouse_position())
-				$HUD.next_instruction()
-		return
-	pass
 
 
 func get_selection_at(screen_position:Vector2):
@@ -188,7 +132,8 @@ func _process(_delta):
 	
 
 func _draw():
-	if dragging:
+	if potential_dragging:
+		# Dont draw potential train line
 		return
 	if mouse_pos != null and selected_junction != null and mouse_over_icons == false:
 		var train_line = selected_junction.get_parent()

@@ -31,65 +31,65 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
-margin_top = 68.0
+margin_top = 96.0
 margin_right = 737.0
-margin_bottom = 520.0
+margin_bottom = 491.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SimpleMode" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+visible = false
 margin_right = 737.0
 margin_bottom = 53.0
 theme = ExtResource( 2 )
 text = "Tutorial Mode"
 
 [node name="NormalMode" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-margin_top = 57.0
 margin_right = 737.0
-margin_bottom = 110.0
+margin_bottom = 53.0
 theme = ExtResource( 2 )
 text = "Normal Mode"
 
 [node name="SingleTrack" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-margin_top = 114.0
+margin_top = 57.0
 margin_right = 737.0
-margin_bottom = 167.0
+margin_bottom = 110.0
 theme = ExtResource( 2 )
 text = "Single Track Challenge"
 
 [node name="UniqueStation" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-margin_top = 171.0
+margin_top = 114.0
 margin_right = 737.0
-margin_bottom = 224.0
+margin_bottom = 167.0
 theme = ExtResource( 2 )
 text = "Unique Station Challenge"
 
 [node name="MegalopolisMode" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-margin_top = 228.0
+margin_top = 171.0
 margin_right = 737.0
-margin_bottom = 281.0
+margin_bottom = 224.0
 theme = ExtResource( 2 )
 text = "Megalopolis Mode"
 
 [node name="EarthquakeMode" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-margin_top = 285.0
+margin_top = 228.0
 margin_right = 737.0
-margin_bottom = 338.0
+margin_bottom = 281.0
 theme = ExtResource( 2 )
 text = "Earthquake Mode"
 
 [node name="ChangingStationsMode" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-margin_top = 342.0
+margin_top = 285.0
 margin_right = 737.0
-margin_bottom = 395.0
+margin_bottom = 338.0
 theme = ExtResource( 2 )
 text = "Changing Stations Mode"
 
 [node name="FreeMode" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer"]
-margin_top = 399.0
+margin_top = 342.0
 margin_right = 737.0
-margin_bottom = 452.0
+margin_bottom = 395.0
 theme = ExtResource( 2 )
 text = "Free Mode"
 
