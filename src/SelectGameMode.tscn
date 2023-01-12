@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://SelectGameMode.gd" type="Script" id=1]
 [ext_resource path="res://Themes/IntroButtonTheme.tres" type="Theme" id=2]
+[ext_resource path="res://Assets/music/010614songidea(copycat).ogg" type="AudioStream" id=3]
 
 [node name="SelectGameMode" type="Node2D"]
 script = ExtResource( 1 )
@@ -92,6 +93,10 @@ margin_right = 737.0
 margin_bottom = 395.0
 theme = ExtResource( 2 )
 text = "Free Mode"
+
+[node name="AudioStreamPlayer_Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Full Screen" to="." method="_on_Full_Screen_pressed"]
 [connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/SimpleMode" to="." method="_on_SimpleMode_pressed"]

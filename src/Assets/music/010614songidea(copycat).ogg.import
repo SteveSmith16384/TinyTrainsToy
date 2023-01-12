@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/010614songidea(copycat).ogg-6d8b1a4f0e64b2b31d8a2fb8dd6648ef.oggstr"
+
+[deps]
+
+source_file="res://Assets/music/010614songidea(copycat).ogg"
+dest_files=[ "res://.import/010614songidea(copycat).ogg-6d8b1a4f0e64b2b31d8a2fb8dd6648ef.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Main.gd" type="Script" id=2]
 [ext_resource path="res://Map.gd" type="Script" id=3]
 [ext_resource path="res://JunctionMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/sfx/Construction.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/music/beepbox1.ogg" type="AudioStream" id=6]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 2 )
@@ -15,6 +17,15 @@ script = ExtResource( 3 )
 [node name="NewStationTimer" type="Timer" parent="Map"]
 wait_time = 12.0
 autostart = true
+
+[node name="Audio" type="Node" parent="Map"]
+
+[node name="Construction" type="AudioStreamPlayer" parent="Map/Audio"]
+stream = ExtResource( 5 )
+
+[node name="Music" type="AudioStreamPlayer" parent="Map/Audio"]
+stream = ExtResource( 6 )
+autoplay = true
 
 [node name="HUD" parent="." instance=ExtResource( 1 )]
 

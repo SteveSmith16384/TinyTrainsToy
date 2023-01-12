@@ -22,7 +22,7 @@ theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "Here"
+text = "Instructions Here"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 40.0
@@ -55,9 +55,10 @@ custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "TEXT HERE"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
-margin_top = 150.0
-margin_right = 740.0
-margin_bottom = 318.0
+margin_left = 15.0
+margin_top = 83.0
+margin_right = 755.0
+margin_bottom = 251.0
 mouse_filter = 2
 
 [node name="Time" type="Label" parent="VBoxContainer2"]

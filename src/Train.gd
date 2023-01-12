@@ -55,7 +55,7 @@ func _on_Area2D_area_entered(area):
 	if area.get_parent() == self:
 		return
 	if parent.is_in_group("stations"):
-		$Audio_Whistle.play()
+		$Audio_Arrive.play()
 		
 		var waiting = false
 		var station = parent

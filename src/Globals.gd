@@ -1,7 +1,7 @@
 extends Node
 
-const VERSION = "1.2"
-const RELEASE_MODE = false
+const VERSION = "1.3"
+const RELEASE_MODE = true
 
 const SHOW_FPS = false and !RELEASE_MODE
 

@@ -1,7 +1,6 @@
 extends Node2D
 
 var payload
-#var clear = true
 var count: int  = 0
 
 
@@ -45,6 +44,4 @@ func _on_Area2D_area_entered(area):
 		return
 	if parent == payload:
 		return
-		
-#	clear = false
 	pass

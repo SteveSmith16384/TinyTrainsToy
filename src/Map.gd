@@ -44,6 +44,8 @@ func add_station():
 	obj.payload = station
 
 	add_child(obj)
+	
+	$Audio/Construction.play()
 	pass
 
 
