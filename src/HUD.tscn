@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://HUD.gd" type="Script" id=1]
-[ext_resource path="res://Assets/fonts/zx_spectrum-7.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Themes/IntroButtonTheme.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/Sprites/game_over.png" type="Texture" id=4]
 [ext_resource path="res://Themes/LabelTheme.tres" type="Theme" id=5]
@@ -9,7 +8,6 @@
 [sub_resource type="DynamicFont" id=1]
 size = 64
 outline_size = 2
-font_data = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )

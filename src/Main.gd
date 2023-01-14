@@ -8,7 +8,7 @@ var drag_start_pos := Vector2()
 var selected_junction = null
 var mouse_pos : Vector2
 var prev_mouse_pos : Vector2
-var prev_button_mask: int = 0
+#var prev_button_mask: int = 0
 var mouse_over_icons = false
 var game_is_over = false
 var money: float
@@ -24,6 +24,8 @@ func _ready():
 	
 	
 func _unhandled_input(event):
+	return
+	
 	if event is InputEventMouseButton:
 		potential_dragging = false
 		dragging = false
@@ -58,10 +60,6 @@ func _unhandled_input(event):
 				selected_junction = null
 				$JunctionMenu.visible = false
 				$HUD.next_instruction()
-	else:
-#		potential_dragging = false
-#		dragging = false
-		pass
 	pass
 	
 	
@@ -78,12 +76,47 @@ func _input(event):
 					$JunctionMenu.visible = false
 					selected_junction.position = $Map.get_local_mouse_position()
 					selected_junction.set_curve_point()
-				elif prev_button_mask == 2:
-					var offset = event.position - prev_mouse_pos
-					$Map.position += offset
+#				elif prev_button_mask == 2:
+#					var offset = event.position - prev_mouse_pos
+#					$Map.position += offset
 		pass
 		prev_mouse_pos = event.position
-	return
+
+	elif event is InputEventMouseButton:
+		potential_dragging = false
+		dragging = false
+		var ev: InputEventMouseButton = event
+		if ev.pressed:
+			if ev.button_mask == 2:
+				var sel = get_selection_at(ev.position)
+				if sel != null:
+					selected_junction = sel
+					potential_dragging = true
+					$JunctionMenu.visible = true
+					$JunctionMenu.rect_position = selected_junction.position
+					$JunctionMenu.rect_position += Vector2(100, 0)
+					if $JunctionMenu.rect_position.x + $JunctionMenu.rect_size.x > 1920:
+						var excess = ($JunctionMenu.rect_position.x + $JunctionMenu.rect_size.x) - 1920
+						$JunctionMenu.rect_position.x -= excess
+					if $JunctionMenu.rect_position.y + $JunctionMenu.rect_size.y > 1080:
+						var excess = ($JunctionMenu.rect_position.y + $JunctionMenu.rect_size.y) - 1080
+#						print(str(excess))
+						$JunctionMenu.rect_position.y -= excess
+				else:
+					$JunctionMenu.visible = false
+					add_junctions($Map.get_local_mouse_position())
+					$HUD.next_instruction()
+			else:
+				if selected_junction != null:
+					if selected_junction.get_parent().curve.get_point_count() <= 1:
+						# Remove track
+						selected_junction.get_parent().queue_free()
+						Globals.num_tracks -= 1
+						update_tracks_left()
+				selected_junction = null
+				$JunctionMenu.visible = false
+				$HUD.next_instruction()
+	pass
 
 
 func get_selection_at(screen_position:Vector2):

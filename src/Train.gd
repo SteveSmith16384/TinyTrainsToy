@@ -54,6 +54,7 @@ func _on_Area2D_area_entered(area):
 	var parent = area.get_parent()
 	if area.get_parent() == self:
 		return
+		
 	if parent.is_in_group("stations"):
 		$Audio_Arrive.play()
 		
